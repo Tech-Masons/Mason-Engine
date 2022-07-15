@@ -1,17 +1,17 @@
 # Coding Conventions
 ## Naming
-Variable names should be in camel case:
+- Variable names should be in camel case:
     `int newVariable = 23`
-Function names should be in pascal case:
+- Function names should be in pascal case:
     `int getVariable()`
-Global variables follow the normal variable naming convention.
+- Global variables follow the normal variable naming convention.
 ## Seperators
-Curly braces should be on a new line.
-Brackets shouldn't have any extra spaces:
+- Curly braces should be on a new line.
+- Brackets shouldn't have any extra spaces:
     `int* array = new int[23]`
 ## Operators
-Put spaces around operators:
+- Put spaces around operators:
   `int x = 2 + 3`
 ## Files/Folders
-Files and folders should be in no case:
+- Files and folders should be in no case:
     `class.cpp`

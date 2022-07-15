@@ -1,4 +1,4 @@
-#include "editor.h"
+#include "Editor.h"
 
 #include "interfaces/iTest.h"
 
@@ -24,7 +24,6 @@ Editor::Editor()
 
 Editor::~Editor()
 {
-
 }
 
 uint64 Editor::Initilize()
@@ -32,7 +31,6 @@ uint64 Editor::Initilize()
 	
 	return 0;
 }
-
 
 uint64 Editor::Tick()
 {
@@ -70,7 +68,6 @@ uint64 Editor::Tick()
 
 		///-------------------------------------------------
 
-
 		masterRenderer->Update(deltaTime);
 		masterRenderer->UpdateViewMatrix(camera);
 		
@@ -93,7 +90,6 @@ uint64 Editor::Shutdown()
 	Renderers.clear();*/
 	delete masterRenderer;
 	delete window;
-
 
 	return 0;
 }

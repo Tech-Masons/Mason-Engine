@@ -35,5 +35,3 @@ private:
 iExecutable* CreateExecutable() {
 	return new Editor();
 }
-
-

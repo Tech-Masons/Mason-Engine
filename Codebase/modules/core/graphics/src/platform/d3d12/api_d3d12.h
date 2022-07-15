@@ -128,7 +128,6 @@ namespace Graphics {
 
 		virtual uint CreateVertexBuffer(UINT vertex_size) override;
 
-
 		virtual void Draw(uint vertex_count, uint instance_count=1, uint start_idx=0, uint end_idx=0) override;
 
 		virtual void BindVertexBuffer(uint idx) override;

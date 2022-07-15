@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+*.vcxproj
+*.user
+*.sln
+*.filters
+/Codebase/release/windows/Debug/x86_64
+/Codebase/.vs/Mason Engine/v17

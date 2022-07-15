@@ -3,7 +3,7 @@
 #include "cdefs.h"
 
 #include "interfaces/iRenderer.h"
-#include "structures/vertices.h"
+#include "structures/Vertices.h"
 
 
 class DebugRenderer : public iRenderer

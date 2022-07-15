@@ -5,7 +5,6 @@
 
 namespace Matrix
 {
-
 	/// ADD
 	matrix4f Add(matrix4f _matrix0, matrix4f _matrix1)
 	{

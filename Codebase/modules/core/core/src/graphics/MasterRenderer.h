@@ -3,7 +3,7 @@
 #include "cpch.h"
 #include "cdefs.h"
 
-#include "structures/vertices.h"
+#include "structures/Vertices.h"
 
 #include "interfaces/iRenderer.h"
 

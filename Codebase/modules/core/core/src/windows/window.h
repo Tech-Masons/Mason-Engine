@@ -2,10 +2,8 @@
 
 #include "cpch.h"
 #include "cdefs.h"
-
 #include <map>
-
-#include "interfaces/isurface.h"
+#include "interfaces/iSurface.h"
 #include "interfaces/iInputSystem.h"
 
 class Window : public Graphics::iSurface

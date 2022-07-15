@@ -1,9 +1,6 @@
 #include "MasterRenderer.h"
-
-#include "commands.h"
-
+#include "Commands.h"
 #include "interfaces/iSurface.h"
-
 #include "DebugRenderer.h"
 
 using namespace Graphics;

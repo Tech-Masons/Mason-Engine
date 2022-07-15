@@ -3,8 +3,7 @@
 #include "gfxpch.h"
 #include "gfxdefs.h"
 
-#include "platform/d3d12/api_d3d12.h"
-
+#include "platform/d3d12/d3d12api.h"
 
 class IWindow;
 namespace Graphics {
@@ -17,10 +16,11 @@ namespace Graphics {
 		API_COUNT			= DirectX12 + 1
 	};
 
-	class RenderCommands {
-
+	class RenderCommands
+	{
 	public:
-		inline static void SelectAPI(API selected, iSurface* pWindow) {
+		inline static void SelectAPI(API selected, iSurface* pWindow)
+		{
 			switch (selected)
 			{
 			case Graphics::API::DirectX12:
@@ -63,7 +63,5 @@ namespace Graphics {
 
 	private:
 		static iRenderAPI* api;
-
 	};
-
 }

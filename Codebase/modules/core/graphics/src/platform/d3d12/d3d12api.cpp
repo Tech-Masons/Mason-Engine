@@ -1,8 +1,6 @@
-#include "api_d3d12.h"
-
+#include "d3d12api.h"
 #include "interfaces/isurface.h"
 #include "d3dx12.h"
-
 #include "Util/Util.h"
 
 namespace Graphics {
@@ -13,16 +11,16 @@ namespace Graphics {
 		if (FAILED(InitilizeD3D12())) {
 			throw std::runtime_error("Could not initilize D3D12 Resources!!");
 		}
-
 	}
 
-	DirectX12API::~DirectX12API() { 
-
+	DirectX12API::~DirectX12API()
+	{
 	}
 
 	#pragma region Initilization_Creation_Shutdown
 	
-	HRESULT DirectX12API::InitilizeD3D12() {
+	HRESULT DirectX12API::InitilizeD3D12()
+	{
 		ComPtr<IDXGIFactory1> factory1;
 		UINT creation_flags = 0;
 #ifdef _DEBUG
@@ -49,10 +47,10 @@ namespace Graphics {
 
 			if(SUCCEEDED(hr))
 				adapters.push_back({ adapter4, desc });
-
 		}
 
-		if (adapters.empty()) {
+		if (adapters.empty())
+		{
 			throw std::runtime_error("No GPUS support D3D12!");
 		}
 
@@ -77,7 +75,6 @@ namespace Graphics {
 		// Create Fences, Events, Initilize SyncValues
 		for (UINT i = 0; i < NUM_FRAMES; i++)
 		{
-			
 			// Create Per Frame Drawing Sync Objects
 			CHECK(CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, &drawAllocators[i]));
 			CHECK(CreateCommandList(drawAllocators[i].Get(), D3D12_COMMAND_LIST_TYPE_DIRECT, &drawLists[i]));
@@ -91,7 +88,6 @@ namespace Graphics {
 				throw std::runtime_error("Could not Create Fence Events");
 			}
 
-
 			// Initilize Per Frame Copy Syncronization  Objects 
 			//CHECK(CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_COPY, &copyAllocators[i]));
 			//CHECK(CreateCommandList(copyAllocators[i].Get(), D3D12_COMMAND_LIST_TYPE_COPY, &copyLists[i]));
@@ -104,13 +100,10 @@ namespace Graphics {
 			/*if (copyFenceEvents[i] == NULL) {
 				throw std::runtime_error("Could not Create Fence Events");
 			}*/
-
 		}
 
 		// Initilization Complete
 		surface->SetWindowTitle(surface->GetWindowTitle()+ L" | " + GetAdapter().desc.Description + L"(D3D12)");
-
-		
 
 		return hr;
 
@@ -167,7 +160,6 @@ namespace Graphics {
 			buffer_ptr.Offset(i * size);
 			
 			device->CreateDepthStencilView(dsv_backbuffers[i].Get(), &dsv, buffer_ptr);
-			
 		}
 
 		return S_OK;
@@ -178,20 +170,21 @@ namespace Graphics {
 		HRESULT hr = S_OK;
 		size_t mostMemory = 0;
 
-		if (selected == nullptr) {
+		if (selected == nullptr)
+		{
 			hr = E_INVALIDARG;
 		}
-		else {
+		else
+		{
 			*selected = -1;
 
 			for (int i = 0; i < adapters.size(); i++)
 			{
-
-				if (adapters[i].desc.DedicatedVideoMemory > mostMemory) {
+				if (adapters[i].desc.DedicatedVideoMemory > mostMemory)
+				{
 					*selected = i;
 					mostMemory = adapters[i].desc.DedicatedVideoMemory;
 				}
-
 			}
 
 			if (*selected == -1)
@@ -279,12 +272,12 @@ namespace Graphics {
 		// flush the pqueue
 		UINT64 waitForMe = Signal(pQueue, pFence, fenceValue);
 		WaitForFence(pFence, waitForMe, fenceEvent);
-
 	}
 
 	void DirectX12API::WaitForFence(ComPtr<ID3D12Fence> pFence, UINT64& fenceValue, HANDLE fenceEvent)
 	{
-		if (pFence->GetCompletedValue() < fenceValue) {
+		if (pFence->GetCompletedValue() < fenceValue)
+		{
 			CHECK(pFence->SetEventOnCompletion(fenceValue, fenceEvent));
 			WaitForSingleObject(fenceEvent, INFINITE);
 		}
@@ -315,7 +308,6 @@ namespace Graphics {
 	
 	void DirectX12API::Cleanup()
 	{
-
 		for (UINT i = 0; i < NUM_FRAMES; i++)
 		{
 			auto waitForDrawQueue = Signal(drawQueue, drawFences[i], drawFenceValues[i]);
@@ -408,13 +400,12 @@ namespace Graphics {
 	{
 		auto buffer = vertex_buffers[idx];
 
-		update_buffer_resource(buffer->resource, data_size, data, CD3DX12_RANGE(0, 0));
+		UpdateBufferResource(buffer->resource, data_size, data, CD3DX12_RANGE(0, 0));
 
 	/*	auto waitForUpload = Signal(copyQueue, copyFences[current_frame_idx], copyFenceValues[current_frame_idx]);
 		WaitForFence(copyFences[current_frame_idx], waitForUpload, copyFenceEvents[current_frame_idx]);*/
 
 		Flush(drawQueue, drawFences[current_frame_idx], drawFenceValues[current_frame_idx], drawFenceEvents[current_frame_idx]);
-
 	}
 
 	void DirectX12API::UpdateConstantBufferData(uint pipe_idx, uint cbv_idx, void* data, size_t data_size)
@@ -422,7 +413,7 @@ namespace Graphics {
 		
 		auto buffer = pipelines[pipe_idx]->constant_buffers[cbv_idx];
 
-		update_buffer_resource(buffer->resource, data_size, data, CD3DX12_RANGE(0, 0));
+		UpdateBufferResource(buffer->resource, data_size, data, CD3DX12_RANGE(0, 0));
 
 		//Flush(copyQueue, copyFences[current_frame_idx], copyFenceValues[current_frame_idx], copyFenceEvents[current_frame_idx]);
 
@@ -438,7 +429,6 @@ namespace Graphics {
 
 	void DirectX12API::Clear(uint bit)
 	{
-
 		CD3DX12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(rtv_backbuffers[current_frame_idx].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 		
 		DXGI_SWAP_CHAIN_DESC sc{};
@@ -453,7 +443,6 @@ namespace Graphics {
 		rtv.Offset(rtv_size * current_frame_idx);
 
 		cmd->ClearRenderTargetView(rtv, clear_color, 0, nullptr);
-		
 
 		// aquire the current DSV, clear the DSV
 		size_t dsv_size = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_DSV);
@@ -469,23 +458,20 @@ namespace Graphics {
 	{
 		Pipeline* pipe = new Pipeline();
 			
-
 		// Create the Shader Pipelines Root Signature
 		{
 			// calculate the number of parameters requested
 			const int num_root_params = num_cbvs;
 
 			std::vector<CD3DX12_ROOT_PARAMETER1> params;
-			if (num_root_params > 0) {
-
+			if (num_root_params > 0)
+			{
 				params.resize(num_root_params);
 				
 				for (int i = 0; i < num_cbvs; i++)
 				{
 					params[i].InitAsConstantBufferView(i); // t{i}
 				}
-
-
 			}
 
 			CD3DX12_VERSIONED_ROOT_SIGNATURE_DESC rs{};
@@ -494,7 +480,8 @@ namespace Graphics {
 			ComPtr<ID3DBlob> signature, error;
 			CHECK(D3D12SerializeVersionedRootSignature(&rs, &signature, &error));
 			
-			if (error) {
+			if (error)
+			{
 				std::cout << (char*)error->GetBufferPointer() << std::endl;
 				return 0;
 			}
@@ -504,8 +491,8 @@ namespace Graphics {
 		
 		// Create the Graphics Pipeline
 		{
-			auto vs = compile_shader_from_file(vs_filepath, "main", "vs_5_1");
-			auto ps = compile_shader_from_file(ps_filepath, "main", "ps_5_1");
+			auto vs = CompileShaderFromFile(vs_filepath, "main", "vs_5_1");
+			auto ps = CompileShaderFromFile(ps_filepath, "main", "ps_5_1");
 
 			D3D12_GRAPHICS_PIPELINE_STATE_DESC desc{};
 			desc.InputLayout.NumElements = layout.size();
@@ -572,7 +559,7 @@ namespace Graphics {
 
 			std::vector<float> init(buffer_size);
 
-			update_buffer_resource(buffer->resource, buffer_size, init.data(), CD3DX12_RANGE(0, 0));
+			UpdateBufferResource(buffer->resource, buffer_size, init.data(), CD3DX12_RANGE(0, 0));
 
 			buffer->view.BufferLocation = buffer->resource->GetGPUVirtualAddress();
 			buffer->view.StrideInBytes = vertex_size;
@@ -581,7 +568,6 @@ namespace Graphics {
 
 		return vertex_buffers.Add(buffer);
 	}
-
 
 	ConstantBuffer* DirectX12API::CreateConstantBuffer(UINT buffer_size)
 	{
@@ -608,8 +594,7 @@ namespace Graphics {
 
 			std::vector<float> init(buffer_size);
 
-			update_buffer_resource(buffer->resource, buffer_size, init.data(), CD3DX12_RANGE(0, 0));
-
+			UpdateBufferResource(buffer->resource, buffer_size, init.data(), CD3DX12_RANGE(0, 0));
 
 			D3D12_CONSTANT_BUFFER_VIEW_DESC desc{};
 			desc.BufferLocation = buffer->resource->GetGPUVirtualAddress();
@@ -662,11 +647,6 @@ namespace Graphics {
 
 		cmd->RSSetViewports(1, &vp_default);
 		cmd->RSSetScissorRects(1, &scissor_default);
-
-
-		
-
-
 	}
 
 	void DirectX12API::SubmitDrawData() {
@@ -692,11 +672,8 @@ namespace Graphics {
 	}
 
 	void DirectX12API::EndFrame()
-	{
-		
+	{	
 	}
 	
 	#pragma endregion
-
-
 }

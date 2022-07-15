@@ -1,7 +1,6 @@
-#include "commands.h"
+#include "Commands.h"
 
-namespace Graphics {
+namespace Graphics
+{
 	iRenderAPI* RenderCommands::api = nullptr;
-
-
 }

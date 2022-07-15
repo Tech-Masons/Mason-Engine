@@ -8,7 +8,8 @@
 
 #include "Mathematics.h"
 
-struct DLine_Vertex {
+struct DLine_Vertex
+{
 	float4 xyzw;
 	float4 color;
 };
@@ -16,15 +17,17 @@ struct DLine_Vertex {
 typedef	std::pair<float3, float3> Line;
 typedef float4 Color4;
 
-struct LineList {
+struct LineList
+{
 	std::vector<DLine_Vertex> data;
 public:
-	void AddLine(Line line, Color4 color) {
+	void AddLine(Line line, Color4 color)
+	{
 		AddLine(line, color, color);
 	}
 
-	void AddLine(Line line, Color4 colorA, Color4 colorB) {
-
+	void AddLine(Line line, Color4 colorA, Color4 colorB)
+	{
 		// extract points
 		float3 pointA = line.first;
 		float3 pointB = line.second;
@@ -41,20 +44,20 @@ public:
 
 	}
 
-	void ClearLines() {
+	void ClearLines()
+	{
 		data.clear();
 	}
-
 };
 
-struct BatchDesc {
+struct BatchDesc
+{
 	uint element_count;		
 	uint* pStrides;
-
 };
 
-
-struct SceneData {
+struct SceneData
+{
 	matrix4f worldMatrix;		// 64
 	matrix4f viewMatrix;		// 64
 	matrix4f projectionMatrix;	// 64

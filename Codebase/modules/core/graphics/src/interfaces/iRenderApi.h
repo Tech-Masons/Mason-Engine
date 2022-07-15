@@ -1,23 +1,26 @@
 #pragma once
-namespace Graphics {
-
+namespace Graphics
+{
 	#define COLOR_BUFFER 0x000000000001u
 	#define DEPTH_BUFFER 0x000000000010u
 
-	enum BufferBit {
+	enum BufferBit
+	{
 		None	= 0x000000000000,
 		Color	= COLOR_BUFFER,
 		Depth	= DEPTH_BUFFER 
 	};
 
-	enum class TopologyType {
+	enum class TopologyType
+	{
 		None,
 		Point,
 		Line,
 		Triangle
 	};
 
-	struct InputElement {
+	struct InputElement
+	{
 		LPCSTR SemanticName;
 		UINT SemanticIndex;
 		DXGI_FORMAT Format; // NEEDS TO BE CHANGED
@@ -65,7 +68,6 @@ namespace Graphics {
 		virtual void UpdateVertexBufferData(uint idx, void* data, size_t data_size) = 0;
 
 		virtual void UpdateConstantBufferData(uint pipe_idx, uint cbv_idx, void* data, size_t data_size) = 0;
-
 
 		virtual void Draw(uint vertex_count, uint instance_count, uint start_idx, uint end_idx) = 0;
 

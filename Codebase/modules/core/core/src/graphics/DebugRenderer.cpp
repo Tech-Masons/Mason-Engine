@@ -1,7 +1,6 @@
 #include "DebugRenderer.h"
-
-#include "interfaces/isurface.h"
-#include "commands.h"
+#include "interfaces/iSurface.h"
+#include "Commands.h"
 
 using namespace Graphics;
 

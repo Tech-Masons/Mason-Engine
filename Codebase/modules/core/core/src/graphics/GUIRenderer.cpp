@@ -1,6 +1,5 @@
 #include "GUIRenderer.h"
-
-#include "commands.h"
+#include "Commands.h"
 
 using namespace Graphics;
 

@@ -1,16 +1,13 @@
 #pragma once
 
 #include <vector>
-
 #include "gfxpch.h"
 #include "gfxdefs.h"
-
-#include "interfaces/iapi.h"
-
+#include "interfaces/iRenderApi.h"
 #include <queue>
 
-namespace Graphics {
-
+namespace Graphics
+{
 	#define NUM_FRAMES 3
 	#define MAX_TRIS 10'000
 	#define MAX_QUADS MAX_TRIS * 2

@@ -6,8 +6,6 @@
 #include "Util/Util.h"
 
 namespace Graphics {
-
-
 	DirectX12API::DirectX12API(iSurface* raster_surface) {
 
 		surface = raster_surface;
@@ -640,7 +638,7 @@ namespace Graphics {
 
 	void DirectX12API::BeginFrame()
 	{
-		//current_frame_idx = swapchain->GetCurrentBackBufferIndex();
+		current_frame_idx = swapchain->GetCurrentBackBufferIndex();
 
 		ComPtr<ID3D12GraphicsCommandList> cmd = drawLists[current_frame_idx];
 		ComPtr<ID3D12CommandAllocator> allocator = drawAllocators[current_frame_idx];
@@ -687,8 +685,6 @@ namespace Graphics {
 		//WaitForFence(drawFences[current_frame_idx], waitForMe, drawFenceEvents[current_frame_idx]);
 
 		Flush(drawQueue, drawFences[current_frame_idx], drawFenceValues[current_frame_idx], drawFenceEvents[current_frame_idx]);
-	
-		current_frame_idx = swapchain->GetCurrentBackBufferIndex();
 	}
 
 	void DirectX12API::Present(bool vsync) {

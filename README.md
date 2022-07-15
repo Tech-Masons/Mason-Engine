@@ -1,5 +1,5 @@
 # Mason-Engine
-
+[Coding Conventions](Documentation/CONVENTIONS.md)
 
 To Contribute: 
 1. run `regenerate.bat` 

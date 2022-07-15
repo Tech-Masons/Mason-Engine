@@ -3,7 +3,7 @@
 #include "cpch.h"
 #include "cdefs.h"
 
-#include "mathematics.h"
+#include "Mathematics.h"
 
 namespace Graphics {
 	class iSurface;

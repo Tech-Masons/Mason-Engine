@@ -2,7 +2,7 @@
 #include "cpch.h"
 #include "cdefs.h"
 
-#include <mathematics.h>
+#include <Mathematics.h>
 
 struct Entity {
 	matrix4f world;

@@ -1,15 +1,14 @@
-#include "mathematics.h"
+#include "Mathematics.h"
 
 #include <math.h>
 #include <cassert>
 
-
-
-
-namespace Matrix {
+namespace Matrix
+{
 
 	/// ADD
-	matrix4f Add(matrix4f _matrix0, matrix4f _matrix1) {
+	matrix4f Add(matrix4f _matrix0, matrix4f _matrix1)
+	{
 		matrix4f sum;
 		for (int i = 0; i < _4x4_; i++)
 		{
@@ -20,7 +19,8 @@ namespace Matrix {
 
 	/// SUBTRACT
 
-	matrix4f Subtract(matrix4f _matrix0, matrix4f _matrix1) {
+	matrix4f Subtract(matrix4f _matrix0, matrix4f _matrix1)
+	{
 		matrix4f diff;
 		for (int i = 0; i < _4x4_; i++)
 		{
@@ -33,7 +33,8 @@ namespace Matrix {
 
 	// Multiply _matrix0 and _matrix1
 	// "_matrix0 into _matrix1"
-	matrix4f Multiply(matrix4f _matrix0, matrix4f _matrix1) {
+	matrix4f Multiply(matrix4f _matrix0, matrix4f _matrix1)
+	{
 		matrix4f _outMatrix;
 
 		matrix4f _m1 = _matrix0;
@@ -63,7 +64,8 @@ namespace Matrix {
 	}
 	
 	// Multiply a _matrix by a _scalar
-	matrix4f Multiply(matrix4f _matrix, float _scalar) {
+	matrix4f Multiply(matrix4f _matrix, float _scalar)
+	{
 		matrix4f prod;
 
 		for (int i = 0; i < _4x4_; i++)
@@ -75,19 +77,22 @@ namespace Matrix {
 	}
 	
 	// Multiply Matrix 0 into Space of Matrix 1
-	matrix4f MultiplyGlobal(matrix4f _matrix0, matrix4f _matrix1) {
+	matrix4f MultiplyGlobal(matrix4f _matrix0, matrix4f _matrix1)
+	{
 		// a -> b
 		return Multiply(_matrix0, _matrix1);
 	}
 	
 	// Multiply Matrix 1 into Space of Matrix 0
-	matrix4f MultiplyLocal(matrix4f _matrix0, matrix4f _matrix1) {
+	matrix4f MultiplyLocal(matrix4f _matrix0, matrix4f _matrix1)
+	{
 		// b -> a
 		return Multiply(_matrix1, _matrix0);
 	}
 
 	// Transpos a _matrix
-	matrix4f Transpose(matrix4f _matrix) {
+	matrix4f Transpose(matrix4f _matrix)
+	{
 		matrix4f _mT;
 
 		_mT.data[0] = _matrix.data[0];
@@ -111,7 +116,8 @@ namespace Matrix {
 	}
 
 	// Find the Determinant of a _matrix
-	float Determinant(matrix4f _matrix) {
+	float Determinant(matrix4f _matrix)
+	{
 		float det;
 
 		float a0 = _matrix.data[0] * _matrix.data[5] - _matrix.data[1] * _matrix.data[4];
@@ -134,7 +140,8 @@ namespace Matrix {
 	}
 
 	// INVERSE
-	matrix4f Inverse(matrix4f _matrix) {
+	matrix4f Inverse(matrix4f _matrix)
+	{
 		matrix4f inverse = _matrix;
 
 		float det = 0.0f;
@@ -185,7 +192,8 @@ namespace Matrix {
 	/// Translation:
 
 	// Creates a Translation Matrix
-	matrix4f Translation(float _x, float _y, float _z) {
+	matrix4f Translation(float _x, float _y, float _z)
+	{
 		matrix4f trans = Identity;
 		trans.data[12] = _x;
 		trans.data[13] = _y;
@@ -194,7 +202,8 @@ namespace Matrix {
 	}
 
 	// Creates a Translation Matrix
-	matrix4f Translation(float3 _position) {
+	matrix4f Translation(float3 _position)
+	{
 		matrix4f trans = Identity;
 		trans.data[12] = _position.x;
 		trans.data[13] = _position.y;
@@ -215,7 +224,8 @@ namespace Matrix {
 	/// Rotation
 
 	// Creates a X-Axis Rotation Matrix
-	matrix4f RotationX(float _radian) {
+	matrix4f RotationX(float _radian)
+	{
 		matrix4f rot;
 
 		float c = cos(_radian);
@@ -230,7 +240,8 @@ namespace Matrix {
 		return rot;
 	}
 	// Creates a Y-Axis Rotation Matrix 
-	matrix4f RotationY(float _radian) {
+	matrix4f RotationY(float _radian)
+	{
 		matrix4f rot;
 
 		float c = cos(_radian);
@@ -245,7 +256,8 @@ namespace Matrix {
 		return rot;
 	}
 	// Creates a Z-Axis Rotation Matrix
-	matrix4f RotationZ(float _radian) {
+	matrix4f RotationZ(float _radian)
+	{
 		matrix4f rot;
 
 		float c = cos(_radian);
@@ -260,7 +272,8 @@ namespace Matrix {
 		return rot;
 	}
 	// Rotates a _matrix by a _rotation GLOBAL m * r
-	matrix4f RotateGlobal(matrix4f _matrix, matrix4f _rotation) {
+	matrix4f RotateGlobal(matrix4f _matrix, matrix4f _rotation)
+	{
 		// save the translation
 		float4 translation = _matrix.row3;
 		// apply rotation
@@ -271,39 +284,46 @@ namespace Matrix {
 		return result;
 	}
 	// Rotates a _matrix by a _rotation LOCAL r * m
-	matrix4f RotateLocal(matrix4f _matrix, matrix4f _rotation) {
+	matrix4f RotateLocal(matrix4f _matrix, matrix4f _rotation)
+	{
 		// apply rotation
 		matrix4f result = Multiply(_rotation, _matrix);
 
 		return result;
 	}
 	// Rotate a Matrix along Global X-AXIS by n radians
-	matrix4f RotateXGlobal(matrix4f _matrix, float _radian) {
+	matrix4f RotateXGlobal(matrix4f _matrix, float _radian)
+	{
 		return RotateGlobal(_matrix, RotationX(_radian));
 	}
 	// Rotate a Matrix along Local X-AXIS by n radians
-	matrix4f RotateXLocal(matrix4f _matrix, float _radian) {
+	matrix4f RotateXLocal(matrix4f _matrix, float _radian)
+	{
 		return RotateLocal(_matrix, RotationX(_radian));
 	}
 	// Rotate a Matrix along Global Y-AXIS by n radians
-	matrix4f RotateYGlobal(matrix4f _matrix, float _radian) {
+	matrix4f RotateYGlobal(matrix4f _matrix, float _radian)
+	{
 		return RotateGlobal(_matrix, RotationY(_radian));
 	}
 	// Rotate a Matrix along Local Y-AXIS by n radians
-	matrix4f RotateYLocal(matrix4f _matrix, float _radian) {
+	matrix4f RotateYLocal(matrix4f _matrix, float _radian)
+	{
 		return RotateLocal(_matrix, RotationY(_radian));
 	}
 	// Rotate a Matrix along Global Z-AXIS by n radians
-	matrix4f RotateZGlobal(matrix4f _matrix, float _radian) {
+	matrix4f RotateZGlobal(matrix4f _matrix, float _radian)
+	{
 		return RotateGlobal(_matrix, RotationZ(_radian));
 	}
 	// Rotate a Matrix along Local Z-AXIS by n radians
-	matrix4f RotateZLocal(matrix4f _matrix, float _radian) {
+	matrix4f RotateZLocal(matrix4f _matrix, float _radian)
+	{
 		return RotateLocal(_matrix, RotationZ(_radian));
 	}
 	// Rotate an object Globaly along any axis
-	matrix4f RotationRollPitchYaw(float _pitch, float _yaw, float _roll) {
-
+	matrix4f RotationRollPitchYaw(float _pitch, float _yaw, float _roll)
+	{
 		matrix4f final_rotation = Identity;
 
 		matrix4f x = RotateXGlobal(Identity, _pitch);
@@ -314,12 +334,11 @@ namespace Matrix {
 		xy = Multiply(x, y);
 		final_rotation = Multiply(z, xy);
 
-
 		return final_rotation;
 	}
 	// Rotate an object Globaly along any axis
-	matrix4f RotationRollPitchYaw(float3 _rotation) {
-
+	matrix4f RotationRollPitchYaw(float3 _rotation)
+	{
 		matrix4f final_rotation;
 
 		matrix4f x = RotateXGlobal(Identity, _rotation.x);
@@ -330,7 +349,6 @@ namespace Matrix {
 		xy = Multiply(x, y);
 		final_rotation = Multiply(z, xy);
 
-
 		return final_rotation;
 	}
 
@@ -338,7 +356,8 @@ namespace Matrix {
 
 	// Creates a Scaling Matrix. all axis are scaled independent.
 	// NOTE: scales are not preset. 
-	matrix4f Scale(float _scaleX, float _scaleY, float _scaleZ) {
+	matrix4f Scale(float _scaleX, float _scaleY, float _scaleZ)
+	{
 		matrix4f scale = Identity;
 		scale.data[0] = _scaleX;
 		scale.data[5] = _scaleY;
@@ -346,7 +365,8 @@ namespace Matrix {
 		return scale;
 	}
 	// Creates a Scaling Matrix. all axis are scaled independent.
-	matrix4f Scale(float3 _scale) {
+	matrix4f Scale(float3 _scale)
+	{
 		matrix4f scale = Identity;
 		scale.data[0] = _scale.x;
 		scale.data[5] = _scale.y;
@@ -354,7 +374,8 @@ namespace Matrix {
 		return scale;
 	}
 	// Creates a Scaling Matrix. all axis are scaled uniformly.
-	matrix4f Scale(float _scalar) {
+	matrix4f Scale(float _scalar)
+	{
 		matrix4f scale = Identity;
 		scale.data[0] = _scalar;
 		scale.data[5] = _scalar;
@@ -363,36 +384,42 @@ namespace Matrix {
 	}
 
 	// Global Independent Scaling a _matrix by Independent Axis
-	matrix4f ScaleGlobal(matrix4f _matrix, float _scaleX, float _scaleY, float _scaleZ) {
+	matrix4f ScaleGlobal(matrix4f _matrix, float _scaleX, float _scaleY, float _scaleZ)
+	{
 		return Multiply(_matrix, Scale(_scaleX, _scaleY, _scaleZ));
 	}
 	// Local Independent Scaling a _matrix by Independent Axis
-	matrix4f ScaleLocal(matrix4f _matrix, float _scaleX, float _scaleY, float _scaleZ) {
+	matrix4f ScaleLocal(matrix4f _matrix, float _scaleX, float _scaleY, float _scaleZ)
+	{
 		return Multiply(Scale(_scaleX, _scaleY, _scaleZ), _matrix);
 	}
 
 	// Global Independent Scaling a _matrix by float3
-	matrix4f ScaleGlobal(matrix4f _matrix, float3 _scale) {
+	matrix4f ScaleGlobal(matrix4f _matrix, float3 _scale)
+	{
 		return Multiply(_matrix, Scale(_scale));
 	}
 	// Local Independent Scaling a _matrix by float3
-	matrix4f ScaleLocal(matrix4f _matrix, float3 _scale) {
+	matrix4f ScaleLocal(matrix4f _matrix, float3 _scale)
+	{
 		return Multiply(Scale(_scale), _matrix);
 	}
 
 	// Uniform Global Scaling a _matrix by a _scalar
-	matrix4f ScaleGlobal(matrix4f _matrix, float _scalar) {
+	matrix4f ScaleGlobal(matrix4f _matrix, float _scalar)
+	{
 		return Multiply(_matrix, Scale(_scalar));
 	}
 	// Uniform Local Scaling a _matrix by a _scalar
-	matrix4f ScaleLocal(matrix4f _matrix, float _scalar) {
+	matrix4f ScaleLocal(matrix4f _matrix, float _scalar)
+	{
 		return Multiply(Scale(_scalar), _matrix);
 	}
 
-
 	/// PROJECTIONS
 
-	matrix4f ProjectionLH(float _fov, float _aspect_ratio, float _near_z, float _far_z) {
+	matrix4f ProjectionLH(float _fov, float _aspect_ratio, float _near_z, float _far_z)
+	{
 		matrix4f _outMatrix = {};
 
 		float yScale = 1.0f / std::tan(_fov / 2.0f);
@@ -438,7 +465,7 @@ namespace Matrix {
 		camRight.x /= magnitudeX;
 		camRight.y /= magnitudeX;
 		camRight.z /= magnitudeX;
-
+		
 
 		camUp.x = (camDir.y * camRight.z) - (camDir.z * camRight.y);
 		camUp.y = (camDir.z * camRight.x) - (camDir.x * camRight.z);
@@ -467,20 +494,21 @@ namespace Matrix {
 	}
 }
 
-
 namespace Math {
-
 	// d = sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2)
 
-	float Distance(float3 a, float3 b) {
+	float Distance(float3 a, float3 b)
+	{
 		return std::sqrtf(std::powf(b.x - a.x, 2.0f) + std::powf(b.y - a.y, 2.0f) + std::powf(b.z - a.z, 2.0f));
 	}
 
-	float Magnitude(float3 f) {
+	float Magnitude(float3 f)
+	{
 		return std::sqrtf(std::powf(f.x, 2.0f) + std::powf(f.y, 2.0f) + std::powf(f.z, 2.0f));
 	}
 
-	float3 Normalize(float3 f) {
+	float3 Normalize(float3 f)
+	{
 		float3 n = { 0 };
 		float mag = Magnitude(f);
 		n.x = f.x / mag;
@@ -489,10 +517,8 @@ namespace Math {
 		return n;
 	}
 
-
-
-	float Dot(float3 vecA, float3 vecB) {
-
+	float Dot(float3 vecA, float3 vecB)
+	{
 		// calcualte the length of the two vectors
 		float a = Magnitude(vecA);
 		float b = Magnitude(vecB);
@@ -500,31 +526,36 @@ namespace Math {
 		float theta = 0.0f;
 		float dot = 0.0f;
 		// are the vectors parrallel?
-		if (a * b == 1.0f) {
+		if (a * b == 1.0f)
+		{
 			theta = 0.0f;
 			dot = cos(to_radian(theta));
 		}
 		// no? 
 		// then are the vectors perpendictular?
-		else if (a * b == 0.0f) {
+		else if (a * b == 0.0f)
+		{
 			theta = 90.0f;
 			dot =  cos(to_radian(theta));
 		}
 		// no? 
 		// then are the vectors parrallel going opposite ways?
-		else if (a * b == -1.0f) {
+		else if (a * b == -1.0f)
+		{
 			theta = 180.0f;
 			dot = cos(to_radian(theta));
 		}
 		// else solve normally
-		else {
+		else
+		{
 			dot = vecA.x * vecB.x + vecA.y * vecB.y + vecA.z * vecB.z;
 		}
 
 		return dot;
 	}
 
-	float3 Cross(float3 a, float3 b) {
+	float3 Cross(float3 a, float3 b)
+	{
 		float3 cross{0};
 		cross.x = a.y * b.z - a.z * b.y;
 		cross.y = a.z * b.x - a.x * b.z;
@@ -570,7 +601,6 @@ namespace Math {
 		// how much we need to rotate along the x-axis
 		float VdotY = Math::Dot(V, Y);
 
-		
 		float _yaw = VdotX * speed * deltaTime;
 
 		float _pitch = VdotY * speed * deltaTime;
@@ -583,7 +613,4 @@ namespace Math {
 		
 		return turn_to;
 	}
-
-
-
 }

@@ -8,11 +8,7 @@ static constexpr float pi = 3.1415926543294f;
 
 #define to_degree(radian) radian * (180.0f / pi)
 
-
 #pragma region FLOATS
-
-
-
 
 struct float2 {
 	union {
@@ -138,11 +134,7 @@ struct float4 {
 
 };
 
-
-
-
 #pragma endregion
-
 
 #pragma region MATRICES
 
@@ -256,7 +248,6 @@ namespace Matrix {
 	// Uniform Local Scaling a _matrix by a _scalar
 	matrix4f ScaleLocal(matrix4f _matrix, float _scalar);
 
-
 	/// PROJECTIONS
 
 	matrix4f ProjectionLH(float _fov, float _aspect_ratio, float _near_z, float _far_z);
@@ -264,8 +255,6 @@ namespace Matrix {
 	matrix4f LookAtLH(float3 _eye, float3 _at, float3 up);
 }
 #pragma endregion
-
-
 
 namespace Math {
 
@@ -281,6 +270,4 @@ namespace Math {
 
 	matrix4f LookAt(float3 position, float3 target, float3 up);
 	matrix4f TurnTo(matrix4f target, float3 destination, float speed, float deltaTime);
-
-
 }

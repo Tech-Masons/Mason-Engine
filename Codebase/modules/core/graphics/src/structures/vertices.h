@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-#include "mathematics.h"
+#include "Mathematics.h"
 
 struct DLine_Vertex {
 	float4 xyzw;

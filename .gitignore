@@ -4,5 +4,6 @@
 *.user
 *.sln
 *.filters
-/Codebase/release/windows/Debug/x86_64
-/Codebase/.vs/Mason Engine/v17
+/Codebase/release/
+/Codebase/.vs/
+/Codebase/tools/editor/assets/

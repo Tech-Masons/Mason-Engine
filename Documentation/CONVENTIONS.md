@@ -13,5 +13,7 @@
 - Put spaces around operators:
   `int x = 2 + 3`
 ## Files/Folders
-- Files and folders should be in no case:
-    `class.cpp`
+- Files should be in camel case:
+    `TestClass.cpp`
+- Folders should be in no case:
+    `folder`

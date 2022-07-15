@@ -1,7 +1,7 @@
 #pragma once
 
-#include "gfxpch.h"
-#include "gfxdefs.h"
+#include "GfxPrecompiled.h"
+#include "GfxDefines.h"
 
 namespace Graphics
 {

@@ -30,10 +30,6 @@ using namespace Microsoft::WRL;
 #include "d3dcompiler.h"
 #pragma endregion
 
-
-
 #define CHECK(hr) if(FAILED(hr)) { _com_error err(hr); std::wcout<< "ERROR: " << err.ErrorMessage() << "\n"; throw std::runtime_error("Failed to Pass check: " + extract_file_name(std::string(__FILE__)) + " " + std::to_string(__LINE__)); }
 
-
 #pragma endregion
-

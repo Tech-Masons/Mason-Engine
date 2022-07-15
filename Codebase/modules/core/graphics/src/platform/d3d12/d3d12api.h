@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "gfxpch.h"
-#include "gfxdefs.h"
+#include "GfxPrecompiled.h"
+#include "GfxDefines.h"
 #include "interfaces/iRenderApi.h"
 #include <queue>
 

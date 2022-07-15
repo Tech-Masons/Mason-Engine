@@ -1,7 +1,7 @@
 #pragma once
 
-#include "gfxpch.h"
-#include "gfxdefs.h"
+#include "GfxPrecompiled.h"
+#include "GfxDefines.h"
 
 #define extract_file_name(path) path.substr(path.find_last_of('\\') + 1)
 

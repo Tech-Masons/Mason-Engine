@@ -1,11 +1,9 @@
 #pragma once
 
-#include "gfxpch.h"
-#include "gfxdefs.h"
-
+#include "GfxPrecompiled.h"
+#include "GfxDefines.h"
 #include <vector>
 #include <map>
-
 #include "Mathematics.h"
 
 struct DLine_Vertex

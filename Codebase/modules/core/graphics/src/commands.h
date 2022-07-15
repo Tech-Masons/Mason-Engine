@@ -1,7 +1,7 @@
 #pragma once
 
-#include "gfxpch.h"
-#include "gfxdefs.h"
+#include "GfxPrecompiled.h"
+#include "GfxDefines.h"
 
 #include "platform/d3d12/d3d12api.h"
 

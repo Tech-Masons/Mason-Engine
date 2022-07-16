@@ -1,6 +1,7 @@
 #include "DebugRenderer.h"
 #include "interfaces/iSurface.h"
 #include "Commands.h"
+#include "io/File.h"
 
 using namespace Graphics;
 
@@ -15,9 +16,22 @@ void DebugRenderer::OnInitilize(Graphics::iSurface* pSurface)
 		sizeof(SceneData)
 	};
 
+	File vertexFile = File("assets/shaders/debug/vertex.hlsl", FileMode::READ);
+	if (!vertexFile.Open())
+	{
+		Logger::Log("Vertex file failed to load!");
+	}
+	File pixelFile = File("assets/shaders/debug/lines.hlsl", FileMode::READ);
+	if (!pixelFile.Open())
+	{
+		Logger::Log("Pixel file failed to load!");
+	}
+
 	pipeline_id = RenderCommands::CreateShaderPipeline(
-		"assets/shaders/debug/vertex.hlsl",
-		"assets/shaders/debug/lines.hlsl",
+		vertexFile.GetPath(),
+		pixelFile.GetPath(),
+		vertexFile.ReadString(),
+		pixelFile.ReadString(),
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
 			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT , D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },

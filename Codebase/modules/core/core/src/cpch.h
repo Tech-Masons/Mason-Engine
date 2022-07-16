@@ -1,6 +1,5 @@
 #pragma once
 
-
 #pragma region COM
 
 #include <wrl/client.h>
@@ -13,8 +12,6 @@ using namespace Microsoft::WRL;
 #pragma comment(lib, "d3dcompiler.lib")
 #include "d3dcompiler.h"
 
-
-
 #pragma region STD
 
 #include <iostream>
@@ -23,4 +20,5 @@ using namespace Microsoft::WRL;
 #include <sstream>
 #include <chrono>
 #include <map>
+#include <cstdint>
 #pragma endregion

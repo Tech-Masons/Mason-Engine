@@ -454,7 +454,7 @@ namespace Graphics {
 
 	}
 
-	uint DirectX12API::CreateShaderPipeline(const std::string& vs_filepath, const std::string& ps_filepath, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes)
+	uint DirectX12API::CreateShaderPipeline(const std::string& vsPath, const std::string& psPath, const std::string& vsData, const std::string& psData, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes)
 	{
 		Pipeline* pipe = new Pipeline();
 			
@@ -491,8 +491,8 @@ namespace Graphics {
 		
 		// Create the Graphics Pipeline
 		{
-			auto vs = CompileShaderFromFile(vs_filepath, "main", "vs_5_1");
-			auto ps = CompileShaderFromFile(ps_filepath, "main", "ps_5_1");
+			auto vs = CompileShaderFromFile(vsPath, vsData, "main", "vs_5_1");
+			auto ps = CompileShaderFromFile(psPath, psData, "main", "ps_5_1");
 
 			D3D12_GRAPHICS_PIPELINE_STATE_DESC desc{};
 			desc.InputLayout.NumElements = layout.size();

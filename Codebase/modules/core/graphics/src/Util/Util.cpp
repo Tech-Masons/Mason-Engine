@@ -1,25 +1,6 @@
 #include "Util.h"
 
-std::vector<char> ReadFile(const std::string& filepath)
-{
-	std::ifstream file(filepath, std::ios::ate);
-
-	if (!file.is_open())
-	{
-		throw std::runtime_error("could not open file: " + filepath);
-	}
-
-	size_t filesize = static_cast<size_t>(file.tellg());
-
-	std::vector<char> buffer(filesize);
-	file.seekg(0);
-	file.read(buffer.data(), filesize);
-	file.close();
-
-	return buffer;
-}
-
-ComPtr<ID3DBlob> CompileShaderFromFile(const std::string& filepath, const std::string& entry, const std::string& version)
+ComPtr<ID3DBlob> CompileShaderFromFile(const std::string& shaderPath, const std::string& shaderData, const std::string& entry, const std::string& version)
 {
 	ComPtr<ID3DBlob> bytecode_blob;
 
@@ -37,12 +18,7 @@ ComPtr<ID3DBlob> CompileShaderFromFile(const std::string& filepath, const std::s
 #endif
 	ID3DBlob* errors;
 
-	// we need to read the file...
-	auto bytecode = ReadFile(filepath);
-	auto filename = extract_file_name(filepath);
-	size_t size = sizeof(bytecode[0]) * bytecode.size();
-
-	HRESULT hr = D3DCompile2(bytecode.data(), size, filename.data(), NULL, D3D_COMPILE_STANDARD_FILE_INCLUDE, entry.c_str(), version.c_str(), dwShaderFlags, 0, 0, nullptr, 0, &bytecode_blob, &errors);
+	HRESULT hr = D3DCompile2(shaderData.c_str(), shaderData.size(), shaderPath.c_str(), NULL, D3D_COMPILE_STANDARD_FILE_INCLUDE, entry.c_str(), version.c_str(), dwShaderFlags, 0, 0, nullptr, 0, &bytecode_blob, &errors);
 
 	if (FAILED(hr))
 	{

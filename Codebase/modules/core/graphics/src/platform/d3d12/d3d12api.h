@@ -121,7 +121,7 @@ namespace Graphics
 
 		virtual void UpdateConstantBufferData(uint pipe_idx, uint cbv_idx, void* data, size_t data_size) override;
 
-		virtual uint CreateShaderPipeline(const std::string& vs_filepath, const std::string& fs_filepath, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes);
+		virtual uint CreateShaderPipeline(const std::string& vsPath, const std::string& psPath, const std::string& vsData, const std::string& psData, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes);
 
 		virtual uint CreateVertexBuffer(UINT vertex_size) override;
 

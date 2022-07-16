@@ -54,7 +54,7 @@ namespace Graphics
 		virtual void EndFrame() = 0;
 		
 		// Creates a Shader Pipeline for binding to the grahics pipeline later
-		virtual uint CreateShaderPipeline(const std::string& vs_filepath, const std::string& fs_filepath, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes) = 0;
+		virtual uint CreateShaderPipeline(const std::string& vsPath, const std::string& psPath, const std::string& vsData, const std::string& fsData, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes) = 0;
 
 		// Bind a pipeline to be used for the current subset of drawing calls
 		virtual void BindShaderPipeline(uint pipeline) = 0;

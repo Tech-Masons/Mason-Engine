@@ -2,6 +2,8 @@
 ## Naming
 - Variable names should be in camel case:
     `int newVariable = 23`
+- Pointer variable names should start with a p and be in pascal case:
+    `int* pTestPointer`
 - Function names should be in pascal case:
     `int getVariable()`
 - Global variables follow the normal variable naming convention.
@@ -17,3 +19,6 @@
     `TestClass.cpp`
 - Folders should be in no case:
     `folder`
+## Macros
+- Macros should be in snake case or screaming snake case:
+  `TEST_MACRO or test_macro`

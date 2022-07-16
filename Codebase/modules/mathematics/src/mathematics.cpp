@@ -506,6 +506,11 @@ namespace Math {
 		return std::sqrtf(std::powf(f.x, 2.0f) + std::powf(f.y, 2.0f) + std::powf(f.z, 2.0f));
 	}
 
+	float MagnitudeSquared(float3 f)
+	{
+		return std::powf(f.x, 2.0f) + std::powf(f.y, 2.0f) + std::powf(f.z, 2.0f);
+	}
+
 	float3 Normalize(float3 f)
 	{
 		float3 n = { 0 };

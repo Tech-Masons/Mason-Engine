@@ -261,6 +261,7 @@ namespace Math {
 	float Distance(float3 a, float3 b);
 
 	float Magnitude(float3 f);
+	float MagnitudeSquared(float3 f);
 
 	float3 Normalize(float3 f);
 

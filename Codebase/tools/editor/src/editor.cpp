@@ -1,7 +1,5 @@
 #include "Editor.h"
-
 #include "interfaces/iTest.h"
-
 #include "graphics/DebugRenderer.h"
 #include "windows/window.h"
 #include "graphics/MasterRenderer.h"
@@ -16,7 +14,6 @@ Editor::Editor()
 	for (const auto& entry : InputSystems)
 	{
 		iInputSystem* i = entry.second;
-		
 	}
 
 	window->AttachInputSystems(InputSystems);
@@ -28,7 +25,6 @@ Editor::~Editor()
 
 uint64 Editor::Initilize()
 {
-	
 	return 0;
 }
 
@@ -36,7 +32,7 @@ uint64 Editor::Tick()
 {
 	// Create a View Matrix
 	matrix4f camera = Matrix::Identity;
-	matrix4f rotation = Matrix::RotationRollPitchYaw({ to_radian(30.0f),0.0f, 0.0f });
+	matrix4f rotation = Matrix::RotationRollPitchYaw({ TO_RADIAN(30.0f),0.0f, 0.0f });
 	camera = Matrix::RotateGlobal(camera, rotation);
 	camera.row3 = { 0,5,-10,1.0 };
 	camera = Matrix::Inverse(camera);
@@ -45,8 +41,8 @@ uint64 Editor::Tick()
 	clock.Start();
 	uint64 eCode = 0;
 
-	while (true) {
-
+	while (true)
+	{
 		if (window->ProcessMessages().has_value())
 		{
 			eCode = 0;
@@ -55,7 +51,6 @@ uint64 Editor::Tick()
 
 		// aquire deltaTime, elapsed time between Ticks
 		auto deltaTime = clock.Signal();
-		
 		
 		///SUBMIT ALL RENDER COMMANDS HERE -------------------------------------------------
 
@@ -72,16 +67,12 @@ uint64 Editor::Tick()
 		masterRenderer->UpdateViewMatrix(camera);
 		
 		masterRenderer->Render();
-
-
-
 	}
 	return eCode;
 }
 
 uint64 Editor::Shutdown()
 {
-
 	/*for (auto& entry : Renderers) {
 		iRenderer* renderer = entry.second;
 		delete renderer;
@@ -90,6 +81,5 @@ uint64 Editor::Shutdown()
 	Renderers.clear();*/
 	delete masterRenderer;
 	delete window;
-
 	return 0;
 }

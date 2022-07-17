@@ -7,7 +7,6 @@ using namespace Graphics;
 
 void DebugRenderer::OnInitilize(Graphics::iSurface* pSurface)
 {
-
 	surface = pSurface;
 
 	line_buffer = RenderCommands::CreateVertexBuffer(sizeof(DLine_Vertex));
@@ -39,7 +38,6 @@ void DebugRenderer::OnInitilize(Graphics::iSurface* pSurface)
 		_countof(cbuffers),
 		cbuffers
 		);
-
 }
 
 void DebugRenderer::OnShutdown()
@@ -55,9 +53,7 @@ void DebugRenderer::OnRender()
 	RenderCommands::Draw(lines.data.size());
 	RenderCommands::SubmitDrawData();
 
-
 	ClearLines();
-
 }
 
 void DebugRenderer::AddLine(Line line, Color4 color) {
@@ -92,7 +88,6 @@ void DebugRenderer::DrawGridXZ(float scale, float step, float4 color) {
 	}
 }
 
-
 void DebugRenderer::OnUpdate(double deltaTime)
 {
 	RenderCommands::UpdateVertexBuffer(line_buffer, lines.data.data(), sizeof(DLine_Vertex) * lines.data.size());
@@ -101,7 +96,7 @@ void DebugRenderer::OnUpdate(double deltaTime)
 
 	float aspect = (float)surface->GetWidth() / (float)surface->GetHeight();
 
-	matrix4f projection = Matrix::ProjectionLH(to_radian(65.0f), aspect, 0.1f, 100.0f);
+	matrix4f projection = Matrix::ProjectionLH(TO_RADIAN(65.0f), aspect, 0.1f, 100.0f);
 
 	scene_data.worldMatrix = Matrix::Identity;
 
@@ -111,12 +106,14 @@ void DebugRenderer::OnUpdate(double deltaTime)
 
 	RenderCommands::UpdateConstantBuffer(pipeline_id, 0, (void*)&scene_data, sizeof(SceneData));
 }
-void DebugRenderer::UpdateViewMatrix(matrix4f _view) {
+
+void DebugRenderer::UpdateViewMatrix(matrix4f _view)
+{
 	viewMatrix = _view;
 }
 
-void DebugRenderer::DrawMatrix(matrix4f matrix) {
-
+void DebugRenderer::DrawMatrix(matrix4f matrix)
+{
 	// assert that the matrix is normalized
 	float3 right = Math::Normalize(matrix.row0.xyz());
 	float3 up = Math::Normalize(matrix.row1.xyz());
@@ -132,7 +129,6 @@ void DebugRenderer::DrawMatrix(matrix4f matrix) {
 
 void DebugRenderer::DrawColliderAABB(matrix4f matrix, float3 size, Color4 color)
 {
-
 	float3 origin = matrix.row3.xyz();
 
 	float3 right = { 1.0f, 0.0f, 0.0f };
@@ -157,7 +153,6 @@ void DebugRenderer::DrawColliderAABB(matrix4f matrix, float3 size, Color4 color)
 	AddLine({ blb, brb }, color);
 	AddLine({ blf, brf }, color);
 
-
 	// draw the top face
 	AddLine({ tlb, tlf }, color);
 	AddLine({ trb, trf }, color);
@@ -165,18 +160,13 @@ void DebugRenderer::DrawColliderAABB(matrix4f matrix, float3 size, Color4 color)
 	AddLine({ tlb, trb }, color);
 	AddLine({ tlf, trf }, color);
 
-
 	// connect left edges
-
 	AddLine({ blb, tlb }, color);
 	AddLine({ blf, tlf }, color);
-
 
 	// connect right edges
 	AddLine({ brb, trb }, color);
 	AddLine({ brf, trf }, color);
-
-
 }
 
 void DebugRenderer::DrawColliderOBB(matrix4f matrix, Color4 color)
@@ -217,13 +207,10 @@ void DebugRenderer::DrawColliderOBB(matrix4f matrix, Color4 color)
 
 
 	// connect left edges
-
 	AddLine({ blb, tlb }, color);
 	AddLine({ blf, tlf }, color);
-
 
 	// connect right edges
 	AddLine({ brb, trb }, color);
 	AddLine({ brf, trf }, color);
-
 }

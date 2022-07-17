@@ -3,8 +3,8 @@
 typedef long long unsigned uint64;
 #include <iostream>
 
-
-class iExecutable {
+class iExecutable
+{
 public:
 	iExecutable() = default;
 	virtual ~iExecutable() = default;
@@ -20,9 +20,6 @@ public:
 		result = Shutdown();
 		return result;
 	};
-
-
 };
-
 
 iExecutable* CreateExecutable();

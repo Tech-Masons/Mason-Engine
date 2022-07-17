@@ -1,5 +1,4 @@
 #include "IRenderer.h"
-
 #include "graphics/DebugRenderer.h"
 #include "graphics/GUIRenderer.h"
 

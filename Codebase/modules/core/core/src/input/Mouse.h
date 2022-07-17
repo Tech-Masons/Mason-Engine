@@ -2,15 +2,12 @@
 
 #include "cpch.h"
 #include "cdefs.h"
-
 #include "interfaces/iInputSystem.h"
-
 #include <bitset>
 
 enum MouseButton {
 	LMB, MMB, RMB
 };
-
 
 class Mouse : public iInputSystem 
 {
@@ -29,29 +26,20 @@ public:
 
 	void EnableTracking();
 	void DisableTracking();
-
-
-
 private:
 	std::bitset<10> mousebuttons;
 	
-	struct {
+	struct
+	{
 		int X;
 		int Y;
-
 
 		int mouse_x;
 		int mouse_y;
 
 		float delta_x;
 		float delta_y;
-
-
-
 	} state;
 
 	bool enable_tracking;
-
-
 };
-

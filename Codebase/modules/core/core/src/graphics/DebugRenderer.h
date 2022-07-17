@@ -5,7 +5,6 @@
 #include "interfaces/iRenderer.h"
 #include "structures/Vertices.h"
 
-
 class DebugRenderer : public iRenderer
 {
 public:
@@ -18,8 +17,6 @@ public:
 	virtual void OnUpdate(double deltaTime) override;
 
 	virtual void UpdateViewMatrix(matrix4f _view) override;
-
-
 public:
 	void AddLine(Line line, Color4 color);
 	void AddLine(Line line, Color4 colorA, Color4 colorB);
@@ -32,8 +29,6 @@ public:
 	void DrawColliderOBB(matrix4f matrix, Color4 color);
 
 	void ClearLines();
-	
-	
 private:
 	LineList lines;
 	uint pipeline_id;
@@ -42,7 +37,4 @@ private:
 
 	uint line_buffer;
 	Graphics::iSurface* surface;
-
-
 };
-

@@ -15,9 +15,6 @@ public:
 	virtual LRESULT CALLBACK MessageHandler(UINT msg, WPARAM w, LPARAM l) override;
 
 	void AttachInputSystems(std::map<InputType, iInputSystem*>& _systems);
-
 private:
 	std::map<InputType, iInputSystem*> systems;
-
 };
-

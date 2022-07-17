@@ -4,9 +4,9 @@
 
 static constexpr float pi = 3.1415926543294f;
 
-#define to_radian(degree) degree *  (pi / 180.0f)
+#define TO_RADIAN(degree) degree *  (pi / 180.0f)
 
-#define to_degree(radian) radian * (180.0f / pi)
+#define TO_DEGREE(radian) radian * (180.0f / pi)
 
 #pragma region FLOATS
 

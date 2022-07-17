@@ -26,6 +26,5 @@ std::map<InputType, iInputSystem*> iInputSystem::CreateInputSystems(uint mask)
 		systems[InputType::Mouse] = iInputSystem::CreateInputSystem(InputType::Mouse);
 	}
 
-
 	return systems;
 }

@@ -1,10 +1,11 @@
 #pragma once
+
 #include "cpch.h"
 #include "cdefs.h"
-
 #include <Mathematics.h>
 
-struct Entity {
+struct Entity
+{
 	matrix4f world;
 public:
 	void SetPosition(float3 pos) { world.row3 = { pos.x, pos.y, pos.z, world.row3.w }; }

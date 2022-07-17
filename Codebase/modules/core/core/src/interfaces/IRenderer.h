@@ -5,11 +5,13 @@
 
 #include "Mathematics.h"
 
-namespace Graphics {
+namespace Graphics
+{
 	class iSurface;
 }
 
-enum class RenderType {
+enum class RenderType
+{
 	GUI,
 	Debug,
 	Forward,
@@ -19,7 +21,8 @@ enum class RenderType {
 #define RENDERER_DEBUG		0000'0001u
 #define RENDERER_GUI		1000'0000u
 
-class iRenderer {
+class iRenderer
+{
 public:
 	iRenderer() {}
 	virtual ~iRenderer() {}
@@ -34,8 +37,6 @@ public:
 	inline static iRenderer* Create(RenderType type);
 
 	static std::map<RenderType, iRenderer*> CreateRenderers(uint mask);
-
 };
-
 
 #define DEFAULT_RENDERERS iRenderer::CreateRenderers(RENDERER_GUI | RENDERER_DEBUG)

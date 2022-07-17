@@ -13,7 +13,8 @@ namespace Graphics
 	#define MAX_QUADS MAX_TRIS * 2
 	#define MAX_VERTICES MAX_QUADS * 4
 
-	struct Adapter {
+	struct Adapter
+	{
 		ComPtr<IDXGIAdapter4> id;
 		DXGI_ADAPTER_DESC desc;
 	};
@@ -24,7 +25,8 @@ namespace Graphics
 		uint count = 0;
 
 	public:
-		Heap(size_t space = 50) {
+		Heap(size_t space = 50)
+		{
 			memory.resize(space); // reserve the minimum amount of space
 			for (int i = 0; i < space; i++)
 			{
@@ -32,11 +34,13 @@ namespace Graphics
 			}
 		}
 
-		T* operator [](const uint& idx){
+		T* operator [](const uint& idx)
+		{
 			return memory[idx];
 		}
 
-		int Add(T* element) {
+		int Add(T* element)
+		{
 			int position = -1;
 
 			for (uint i = 0; i < memory.size(); i++)
@@ -52,7 +56,8 @@ namespace Graphics
 			return position;
 		}
 
-		void Remove(uint position) {
+		void Remove(uint position)
+		{
 			if (memory[position] == nullptr)
 				return;
 
@@ -61,11 +66,13 @@ namespace Graphics
 			count--;
 		}
 
-		void Resize(size_t space) {
+		void Resize(size_t space)
+		{
 			memory.resize(space);
 		}
 
-		void Clean() {
+		void Clean()
+		{
 			for (int i = 0; i < count; i++)
 			{
 				delete memory[i];
@@ -76,27 +83,28 @@ namespace Graphics
 
 	};
 	
-
-	struct VertexBuffer {
+	struct VertexBuffer
+	{
 		ComPtr<ID3D12Resource> resource;
 		D3D12_VERTEX_BUFFER_VIEW view;
 	};
 
-	struct ConstantBuffer {
+	struct ConstantBuffer
+	{
 		ComPtr<ID3D12DescriptorHeap> heap; // cbv heap
 		ComPtr<ID3D12Resource> resource;
 	};
 
-
-
-	struct Pipeline {
+	struct Pipeline
+	{
 		ComPtr<ID3D12RootSignature> signature;
 		ComPtr<ID3D12PipelineState> pipeline;
 
 		Heap<ConstantBuffer> constant_buffers;
 
 	public:
-		void Clean() {
+		void Clean()
+		{
 			constant_buffers.Clean();
 		}
 	};
@@ -139,11 +147,7 @@ namespace Graphics
 		
 		virtual void Present(bool vysnc) override;
 
-
-
 		Adapter GetAdapter();
-
-
 	private:
 		HRESULT InitilizeD3D12();
 		HRESULT SelectAdapter(int* id);
@@ -161,13 +165,10 @@ namespace Graphics
 		
 		ConstantBuffer* CreateConstantBuffer(UINT buffer_size);
 
-
 		void Flush(ComPtr<ID3D12CommandQueue> pQueue, ComPtr<ID3D12Fence> pFence, UINT64& fenceValue, HANDLE fenceEvent);
 		void WaitForFence(ComPtr<ID3D12Fence> pFence, UINT64& fenceValue, HANDLE fenceEvent);
 		UINT64 Signal(ComPtr<ID3D12CommandQueue> pQueue, ComPtr<ID3D12Fence> pFence, UINT64& fenceValue);
-
 	private:
-
 		ComPtr<ID3D12Device2> device;
 		ComPtr<IDXGIFactory4> factory;
 		
@@ -203,13 +204,11 @@ namespace Graphics
 		D3D12_VIEWPORT vp_default;
 		D3D12_RECT scissor_default;
 
-
 		// Pipelines
 		Heap<Pipeline> pipelines;
 		
 		// Buffers
 		Heap<VertexBuffer> vertex_buffers;
-
 
 		// State
 		float clear_color[4]{0.0f, 0.0f, 0.0f, 0.0f};
@@ -218,6 +217,5 @@ namespace Graphics
 		UINT current_frame_idx = 0;
 
 		iSurface* surface;
-
 	};
 }

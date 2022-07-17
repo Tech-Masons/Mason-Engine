@@ -1,8 +1,8 @@
 #include "window.h"
-
 #include "input/keyboard.h"
 #include "input/mouse.h"
 #include "windowsx.h"
+
 Window::Window(const std::wstring& _title, int _width, int _height)
 	:  iSurface(_title, _width, _height)
 {

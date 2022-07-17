@@ -533,21 +533,21 @@ namespace Math {
 		if (a * b == 1.0f)
 		{
 			theta = 0.0f;
-			dot = cos(to_radian(theta));
+			dot = cos(TO_RADIAN(theta));
 		}
 		// no? 
 		// then are the vectors perpendictular?
 		else if (a * b == 0.0f)
 		{
 			theta = 90.0f;
-			dot =  cos(to_radian(theta));
+			dot =  cos(TO_RADIAN(theta));
 		}
 		// no? 
 		// then are the vectors parrallel going opposite ways?
 		else if (a * b == -1.0f)
 		{
 			theta = 180.0f;
-			dot = cos(to_radian(theta));
+			dot = cos(TO_RADIAN(theta));
 		}
 		// else solve normally
 		else

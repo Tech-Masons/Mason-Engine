@@ -8,7 +8,6 @@ public:
 	Clock();
 	~Clock();
 
-
 	void Start();
 	double Signal();
 	double GetElapsed();
@@ -16,5 +15,4 @@ public:
 
 	std::chrono::high_resolution_clock::time_point T_START;
 	std::chrono::high_resolution_clock::time_point T_CURRENT;
-
 };

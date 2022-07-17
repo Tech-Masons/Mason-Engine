@@ -3,11 +3,11 @@
 #include "cpch.h"
 #include "cdefs.h"
 
-class iEvent {
+class iEvent
+{
 public:
 	iEvent() {}
-	virtual ~iEvent() {}
-		
+	virtual ~iEvent() {}	
 protected:
 	bool handled = false;
 };

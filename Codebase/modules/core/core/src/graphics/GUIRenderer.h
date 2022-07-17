@@ -13,9 +13,6 @@ public:
 	virtual void OnRender() override;
 	virtual void OnUpdate(double) override;
 	virtual void UpdateViewMatrix(matrix4f _view) override;
-
 private:
 	uint vb;
-
 };
-

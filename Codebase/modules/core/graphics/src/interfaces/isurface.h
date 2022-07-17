@@ -31,7 +31,6 @@ namespace Graphics
 				std::wstringstream wss;
 				std::wcout << L"Could Not Register Window Surface\n" << err.ErrorMessage() << "\n";
 				throw std::runtime_error("WINDOW ERROR!");
-
 			}
 
 			DWORD ex_Styles = WS_EX_OVERLAPPEDWINDOW;

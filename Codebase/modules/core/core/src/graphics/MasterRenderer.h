@@ -7,16 +7,19 @@
 
 #include "interfaces/iRenderer.h"
 
-namespace Graphics {
-enum class API;
-class iSurface;
+namespace Graphics
+{
+	enum class API;
+	class iSurface;
 }
 
 #include <map>
-struct ModelData {
-	
+struct ModelData
+{	
 };
-class MasterRenderer {
+
+class MasterRenderer
+{
 public:
 	MasterRenderer();
 	~MasterRenderer();
@@ -34,15 +37,8 @@ public:
 	iRenderer* GetRenderer(RenderType type);
 
 	static MasterRenderer* Create(uint api, Graphics::iSurface* window);
-
 private:
-
 	std::map<RenderType, iRenderer*> renderers;
-
-
-
 	Graphics::iSurface* surface;
-
-
 	matrix4f viewMatrix;
 };

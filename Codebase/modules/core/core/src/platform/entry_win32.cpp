@@ -2,7 +2,8 @@
 
 extern iExecutable* CreateExecutable();
 
-int main() {
+int main()
+{
 	auto exe = CreateExecutable();
 	
 	uint64 error = 0;
@@ -17,5 +18,4 @@ int main() {
 		std::cout << except.what() << "\n";
 		return (int)error;
 	}
-
 }

@@ -11,7 +11,6 @@ void Keyboard::OnKeyDown(KeyCode kc)
 	keys[kc] = true;
 	// used to determine what virtual windows keycode matches to what FSE keycode
 	//std::cout << kc << std::endl;
-
 }
 
 void Keyboard::OnKeyUp(KeyCode kc)

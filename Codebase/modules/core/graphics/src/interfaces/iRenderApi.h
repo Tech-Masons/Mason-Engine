@@ -1,4 +1,5 @@
 #pragma once
+
 namespace Graphics
 {
 	#define COLOR_BUFFER 0x000000000001u
@@ -82,4 +83,3 @@ namespace Graphics
 		virtual void Cleanup() = 0;
 	};
 }
-

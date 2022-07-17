@@ -7,7 +7,9 @@
 #include "iInputSystem.h"
 
 class Window;
-class iTest {
+
+class iTest
+{
 public:
 	iTest(const std::wstring& test_name);
 	virtual ~iTest() {};
@@ -18,7 +20,6 @@ public:
 	void OnRender();
 	void OnCleanup();
 	bool Quit();
-
 protected:
 	virtual void Init() = 0;
 	virtual void Input() = 0;
@@ -28,8 +29,6 @@ protected:
 
 	std::map<RenderType, iRenderer*> Renderers;
 	std::map<InputType, iInputSystem*> InputSystems;
-
 private:
 	Window* window;
-
 };

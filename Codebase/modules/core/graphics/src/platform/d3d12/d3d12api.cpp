@@ -3,9 +3,10 @@
 #include "d3dx12.h"
 #include "Util/Util.h"
 
-namespace Graphics {
-	DirectX12API::DirectX12API(iSurface* raster_surface) {
-
+namespace Graphics
+{
+	DirectX12API::DirectX12API(iSurface* raster_surface)
+	{
 		surface = raster_surface;
 		
 		if (FAILED(InitilizeD3D12())) {
@@ -106,7 +107,6 @@ namespace Graphics {
 		surface->SetWindowTitle(surface->GetWindowTitle()+ L" | " + GetAdapter().desc.Description + L"(D3D12)");
 
 		return hr;
-
 	}
 
 	HRESULT DirectX12API::UpdateDepthStencilViews()

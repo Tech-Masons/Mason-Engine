@@ -39,7 +39,7 @@ namespace Graphics {
 
 		inline static void BindShaderPipeline(uint idx) { api->BindShaderPipeline(idx); }
 		
-		inline static uint CreateShaderPipeline(const std::string& vsPath, const std::string& psPath, const std::string& vsData, const std::string& psData, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes) { return api->CreateShaderPipeline(vsPath, psPath, vsData, psData, layout, topology, num_cbvs, cbv_sizes); }
+		inline static uint CreateShaderPipeline(const std::string& vsData, const std::string& psData, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes) { return api->CreateShaderPipeline(vsData, psData, layout, topology, num_cbvs, cbv_sizes); }
 
 		inline static uint CreateVertexBuffer(UINT vertex_size) { return api->CreateVertexBuffer(vertex_size); };
 

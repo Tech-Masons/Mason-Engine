@@ -1,6 +1,6 @@
 #include "Util.h"
 
-ComPtr<ID3DBlob> CompileShaderFromFile(const std::string& shaderPath, const std::string& shaderData, const std::string& entry, const std::string& version)
+ComPtr<ID3DBlob> CompileShaderFromFile(const std::string& shaderData, const std::string& entry, const std::string& version)
 {
 	ComPtr<ID3DBlob> bytecode_blob;
 
@@ -18,7 +18,7 @@ ComPtr<ID3DBlob> CompileShaderFromFile(const std::string& shaderPath, const std:
 #endif
 	ID3DBlob* errors;
 
-	HRESULT hr = D3DCompile2(shaderData.c_str(), shaderData.size(), shaderPath.c_str(), NULL, D3D_COMPILE_STANDARD_FILE_INCLUDE, entry.c_str(), version.c_str(), dwShaderFlags, 0, 0, nullptr, 0, &bytecode_blob, &errors);
+	HRESULT hr = D3DCompile2(shaderData.c_str(), shaderData.size(), NULL, NULL, D3D_COMPILE_STANDARD_FILE_INCLUDE, entry.c_str(), version.c_str(), dwShaderFlags, 0, 0, nullptr, 0, &bytecode_blob, &errors);
 
 	if (FAILED(hr))
 	{

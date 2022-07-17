@@ -28,8 +28,6 @@ void DebugRenderer::OnInitilize(Graphics::iSurface* pSurface)
 	}
 
 	pipeline_id = RenderCommands::CreateShaderPipeline(
-		vertexFile.GetPath(),
-		pixelFile.GetPath(),
 		vertexFile.ReadString(),
 		pixelFile.ReadString(),
 		{

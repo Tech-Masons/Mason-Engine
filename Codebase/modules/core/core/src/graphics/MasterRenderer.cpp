@@ -7,9 +7,11 @@ using namespace Graphics;
 
 MasterRenderer::MasterRenderer() 
 	: surface{nullptr} 
-{ }
+{
+}
 
-MasterRenderer::~MasterRenderer() {
+MasterRenderer::~MasterRenderer()
+{
 	RenderCommands::Cleanup();
 }
 
@@ -41,7 +43,6 @@ void MasterRenderer::Shutdown()
 
 void MasterRenderer::Update(double deltaTime)
 {
-
 	renderers[RenderType::GUI]->OnUpdate(deltaTime);
 
 	for (const auto& entry : renderers) {
@@ -76,21 +77,17 @@ void MasterRenderer::Render()
 
 		}
 		
-
 		renderers[RenderType::GUI]->OnRender();
-
-		
 	}
 
 	RenderCommands::Present(false);
-
 	RenderCommands::EndFrame();
 }
 
-
-
-void MasterRenderer::UpdateViewMatrix(matrix4f _view) {
-	for (const auto& entry : renderers) {
+void MasterRenderer::UpdateViewMatrix(matrix4f _view)
+{
+	for (const auto& entry : renderers)
+	{
 		auto r = entry.second;
 		r->UpdateViewMatrix(_view);
 	}
@@ -107,8 +104,3 @@ MasterRenderer* MasterRenderer::Create(uint api, Graphics::iSurface* window)
 	mr->Initilize(api, window);
 	return mr;
 }
-
-
-
-
-

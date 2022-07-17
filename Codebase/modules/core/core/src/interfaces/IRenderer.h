@@ -2,7 +2,6 @@
 
 #include "cpch.h"
 #include "cdefs.h"
-
 #include "Mathematics.h"
 
 namespace Graphics

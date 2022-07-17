@@ -5,7 +5,8 @@
 #include "interfaces/iInputSystem.h"
 #include <bitset>
 
-enum MouseButton {
+enum MouseButton
+{
 	LMB, MMB, RMB
 };
 

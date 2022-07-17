@@ -3,7 +3,8 @@
 #include "cpch.h"
 #include "cdefs.h"
 
-class Clock {
+class Clock
+{
 public:
 	Clock();
 	~Clock();

@@ -59,7 +59,7 @@ namespace Graphics
 				DispatchMessage(&msg);
 			}
 			
-			return {};
+			return { };
 		}
 		
 		int GetWidth()
@@ -132,9 +132,7 @@ namespace Graphics
 		};
 	private:
 		const std::wstring className;
-
 		HWND hSurface;
-
 		std::wstring title;
 		int width;
 		int height;

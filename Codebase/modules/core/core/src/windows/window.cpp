@@ -32,7 +32,6 @@ LRESULT Window::MessageHandler(UINT msg, WPARAM w, LPARAM l)
 			
 		}
 
-
 		if (mouse) {
 			
 			case WM_MOUSEMOVE:

@@ -6,9 +6,11 @@
 #include "platform/d3d12/d3d12api.h"
 
 class IWindow;
-namespace Graphics {
 
-	enum class API {
+namespace Graphics
+{
+	enum class API
+	{
 		None				= 0,
 		DirectX11			= None + 1,
 		DirectX12			= DirectX11 + 1,

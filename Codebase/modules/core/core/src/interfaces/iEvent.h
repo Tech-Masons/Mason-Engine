@@ -6,8 +6,8 @@
 class iEvent
 {
 public:
-	iEvent() {}
-	virtual ~iEvent() {}	
+	iEvent() { }
+	virtual ~iEvent() { }	
 protected:
 	bool handled = false;
 };

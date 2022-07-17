@@ -13,8 +13,8 @@ enum class InputType
 class iInputSystem
 {
 public:
-	iInputSystem() {}
-	virtual ~iInputSystem() {}
+	iInputSystem() { }
+	virtual ~iInputSystem() { }
 
 	static iInputSystem* CreateInputSystem(InputType type);
 	static std::map<InputType, iInputSystem*> CreateInputSystems(uint mask);

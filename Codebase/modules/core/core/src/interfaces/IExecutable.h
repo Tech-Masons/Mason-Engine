@@ -13,7 +13,8 @@ public:
 	virtual uint64 Tick() = 0;
 	virtual uint64 Shutdown() = 0;
 
-	virtual uint64 Run() {
+	virtual uint64 Run()
+	{
 		uint64 result = 0;
 		result = Initilize();
 		result = Tick();

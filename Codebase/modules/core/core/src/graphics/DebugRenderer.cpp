@@ -56,13 +56,13 @@ void DebugRenderer::OnRender()
 	ClearLines();
 }
 
-void DebugRenderer::AddLine(Line line, Color4 color) {
-
+void DebugRenderer::AddLine(Line line, Color4 color)
+{
 	lines.AddLine(line, color);
 }
 
-void DebugRenderer::AddLine(Line line, Color4 colorA, Color4 colorB) {
-
+void DebugRenderer::AddLine(Line line, Color4 colorA, Color4 colorB)
+{
 	lines.AddLine(line, colorA, colorB);
 }
 
@@ -71,7 +71,8 @@ void DebugRenderer::ClearLines()
 	lines.ClearLines();
 }
 
-void DebugRenderer::DrawGridXZ(float scale, float step, float4 color) {
+void DebugRenderer::DrawGridXZ(float scale, float step, float4 color)
+{
 	float minX = -scale;
 	float maxX = scale;
 	float minZ = -scale;
@@ -119,7 +120,6 @@ void DebugRenderer::DrawMatrix(matrix4f matrix)
 	float3 up = Math::Normalize(matrix.row1.xyz());
 	float3 forward = Math::Normalize(matrix.row2.xyz());
 	float3 origin = matrix.row3.xyz();
-
 
 	AddLine({ origin, origin + right }, { 1.0f, 0.0f, 0.0f, 1.0f });
 	AddLine({ origin, origin + up }, { 0.0f, 1.0f, 0.0f, 1.0f });

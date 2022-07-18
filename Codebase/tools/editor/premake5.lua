@@ -17,8 +17,6 @@ project "editor"
         "src/**.c"
     }
 
-
-
     includedirs {
         "src/",
         "../../packages/",
@@ -27,6 +25,7 @@ project "editor"
         "../../modules/core/core/src",      
         "../../modules/core/graphics/src",
         "../../modules/mathematics/src",
+	   "../../modules/core/platform/src",
     
         -- engine tests
         "../../tests/src/"
@@ -38,7 +37,8 @@ project "editor"
         "core",
         "mathematics",
         "graphics",
-        "tests"
+        "tests",
+	   "platform",
     }
     defines{
         

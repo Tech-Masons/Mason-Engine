@@ -1,8 +1,6 @@
 #pragma once
-
-#include "cpch.h"
-#include "cdefs.h"
-#include "interfaces/iInputSystem.h"
+#include "PlatformDefines.h""
+#include "iInputSystem.h"
 #include <bitset>
 
 enum KeyCode
@@ -19,9 +17,7 @@ public:
 	static constexpr uint8_t KeyCount = 0xFFu;
 
 	bool IsKeyPressed(KeyCode kc);
-	
 	void OnKeyDown(KeyCode kc);
-	
 	void OnKeyUp(KeyCode kc);
 private:
 	std::bitset<KeyCount> keys;

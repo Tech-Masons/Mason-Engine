@@ -1,9 +1,9 @@
 #pragma once
-
 #include <vector>
 #include "GfxPrecompiled.h"
 #include "GfxDefines.h"
 #include "interfaces/iRenderApi.h"
+#include "iGameWindow.h"
 #include <queue>
 
 namespace Graphics
@@ -113,7 +113,7 @@ namespace Graphics
 
 	class DirectX12API : public iRenderAPI {
 	public:
-		DirectX12API(iSurface* rasterSurface);
+		DirectX12API(iGameWindow* window);
 		virtual ~DirectX12API();
 
 		virtual void SetColor(float r, float g, float b, float a) override;
@@ -217,6 +217,6 @@ namespace Graphics
 
 		UINT current_frame_idx = 0;
 
-		iSurface* surface;
+		iGameWindow* window;
 	};
 }

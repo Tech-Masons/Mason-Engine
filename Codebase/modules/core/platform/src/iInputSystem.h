@@ -1,6 +1,5 @@
 #pragma once
-#include "cpch.h"
-#include "cdefs.h"
+#include "PlatformDefines.h"
 
 enum class InputType
 {
@@ -17,7 +16,7 @@ public:
 	virtual ~iInputSystem() { }
 
 	static iInputSystem* CreateInputSystem(InputType type);
-	static std::map<InputType, iInputSystem*> CreateInputSystems(uint mask);
+	static std::map<InputType, iInputSystem*> CreateInputSystems(uint32_t mask);
 };
 
 #define DEFAULT_INPUT_SYSTEMS iInputSystem::CreateInputSystems(KEYBOARD_AND_MOUSE);

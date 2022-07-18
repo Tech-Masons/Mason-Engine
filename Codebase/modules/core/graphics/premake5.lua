@@ -18,13 +18,11 @@ project "graphics"
         "src/**.c"
     }
 
-
     includedirs {
         "src/",
         "../../../packages/",
-        
-        "../../mathematics/src",
-
+        "../mathematics/src",
+	   "../platform/src",
     }
     libdirs{
         "../../../bin/lib/%{cfg.buildcfg}/"
@@ -34,8 +32,9 @@ project "graphics"
         "dxguid",
         "mathematics",
         "DirectXTK12.lib",
+	   "platform"
     }
-    defines{
+    defines {
         
     }
     
@@ -44,7 +43,6 @@ project "graphics"
         systemversion "latest"
 
         defines { "WIN32" }
-
 
     filter "configurations:Debug"
         symbols "on"

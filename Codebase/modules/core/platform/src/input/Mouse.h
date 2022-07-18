@@ -1,8 +1,6 @@
 #pragma once
-
-#include "cpch.h"
-#include "cdefs.h"
-#include "interfaces/iInputSystem.h"
+#include "PlatformDefines.h"
+#include "iInputSystem.h"
 #include <bitset>
 
 enum MouseButton

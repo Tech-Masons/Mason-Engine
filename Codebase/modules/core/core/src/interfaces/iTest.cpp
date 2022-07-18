@@ -1,5 +1,4 @@
 #include "iTest.h"
-#include "windows/window.h"
 #include "graphics/DebugRenderer.h"
 
 iTest::iTest(const std::wstring& test_name)

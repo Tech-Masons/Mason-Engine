@@ -1,5 +1,4 @@
 #include "iInputSystem.h"
-
 #include "input/Keyboard.h"
 #include "input/Mouse.h"
 
@@ -16,7 +15,7 @@ iInputSystem* iInputSystem::CreateInputSystem(InputType type)
 	return nullptr;
 }
 
-std::map<InputType, iInputSystem*> iInputSystem::CreateInputSystems(uint mask)
+std::map<InputType, iInputSystem*> iInputSystem::CreateInputSystems(uint32_t mask)
 {
 	std::map<InputType, iInputSystem*> systems;
 

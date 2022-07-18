@@ -25,6 +25,7 @@ project "tests"
         "../modules/core/core/src",      
         "../modules/core/graphics/src",
         "../modules/mathematics/src",
+	   "../modules/core/platform/src",
     
     }
     libdirs{
@@ -34,6 +35,7 @@ project "tests"
         "core",
         "mathematics",
         "graphics",
+	   "platform",
     }
     defines{
         

@@ -8,7 +8,7 @@
 class GUIRenderer : public iRenderer
 {
 public:
-	virtual void OnInitilize(Graphics::iSurface*) override;
+	virtual void OnInitilize(iGameWindow* pGameWindow) override;
 	virtual void OnShutdown() override;
 	virtual void OnRender() override;
 	virtual void OnUpdate(double) override;

@@ -1,12 +1,12 @@
 #include "Editor.h"
 #include "interfaces/iTest.h"
 #include "graphics/DebugRenderer.h"
-#include "windows/window.h"
 #include "graphics/MasterRenderer.h"
 
 Editor::Editor()
 {
-	window = new Window(L"Mason Engine: ", 1280, 720);
+	window = new Win32Window("Mason Engine", 1280, 720);
+	window->Open();
 
 	masterRenderer = MasterRenderer::Create(RENDER_API, window);
 
@@ -39,11 +39,12 @@ uint64 Editor::Tick()
 
 	// start the editor clock
 	clock.Start();
-	uint64 eCode = 0;
+	uint64_t eCode = 0;
 
-	while (true)
+	while (window->IsRunning())
 	{
-		if (window->ProcessMessages().has_value())
+		window->Poll();
+		if (!window->IsRunning())
 		{
 			eCode = 0;
 			break;
@@ -68,7 +69,7 @@ uint64 Editor::Tick()
 		
 		masterRenderer->Render();
 	}
-	return eCode;
+	return 0;
 }
 
 uint64 Editor::Shutdown()

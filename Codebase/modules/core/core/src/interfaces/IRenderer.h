@@ -1,7 +1,7 @@
 #pragma once
-
 #include "cpch.h"
 #include "cdefs.h"
+#include "iGameWindow.h"
 #include "Mathematics.h"
 
 namespace Graphics
@@ -26,7 +26,7 @@ public:
 	iRenderer() {}
 	virtual ~iRenderer() {}
 
-	virtual void OnInitilize(Graphics::iSurface*) = 0;
+	virtual void OnInitilize(iGameWindow* pGameWindow) = 0;
 	virtual void OnShutdown() = 0;
 	
 	virtual void OnRender() = 0;

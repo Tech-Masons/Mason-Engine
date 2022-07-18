@@ -3,7 +3,8 @@
 #include <iostream>
 #include "interfaces/IExecutable.h"
 #include "interfaces/IRenderer.h"
-#include "interfaces/iInputSystem.h"
+#include "Win32Window.h"
+#include "iInputSystem.h"
 #include "time/clock.h"
 
 class Window;
@@ -24,7 +25,7 @@ private:
 	//std::map<RenderType, iRenderer*> Renderers;
 	std::map<InputType, iInputSystem*> InputSystems;
 private:
-	Window* window;
+	Win32Window* window;
 	Clock clock;
 };
 

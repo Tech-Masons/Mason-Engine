@@ -1,14 +1,13 @@
 #pragma once
 #include "cpch.h"
 #include "cdefs.h"
-
 #include "interfaces/iRenderer.h"
 #include "structures/Vertices.h"
 
 class DebugRenderer : public iRenderer
 {
 public:
-	virtual void OnInitilize(Graphics::iSurface* pWindow) override;
+	virtual void OnInitilize(iGameWindow* pGameWindow) override;
 
 	virtual void OnShutdown() override;
 
@@ -36,5 +35,5 @@ private:
 	matrix4f viewMatrix;
 
 	uint line_buffer;
-	Graphics::iSurface* surface;
+	iGameWindow* pGameWindow;
 };

@@ -1,12 +1,11 @@
 #include "MasterRenderer.h"
 #include "Commands.h"
-#include "interfaces/iSurface.h"
 #include "DebugRenderer.h"
 
 using namespace Graphics;
 
 MasterRenderer::MasterRenderer() 
-	: surface{nullptr} 
+	: pGameWindow {nullptr} 
 {
 }
 
@@ -15,17 +14,18 @@ MasterRenderer::~MasterRenderer()
 	RenderCommands::Cleanup();
 }
 
-void MasterRenderer::Initilize(uint api, Graphics::iSurface* pSurface)
+void MasterRenderer::Initilize(uint api, iGameWindow* pGameWindow)
 {
-	this->surface = pSurface;
+	this->pGameWindow = pGameWindow;
 	this->viewMatrix = Matrix::Identity;
 
-	RenderCommands::SelectAPI((API)api, surface);
+	RenderCommands::SelectAPI((API)api, pGameWindow);
 
 	renderers = DEFAULT_RENDERERS;
-	for (const auto& entry : renderers) {
+	for (const auto& entry : renderers)
+	{
 		auto r = entry.second;
-		r->OnInitilize(surface);
+		r->OnInitilize(pGameWindow);
 	}
 	// Setup Default Renderers 
 
@@ -95,9 +95,9 @@ iRenderer* MasterRenderer::GetRenderer(RenderType type)
 	return renderers[type];
 }
 
-MasterRenderer* MasterRenderer::Create(uint api, Graphics::iSurface* window)
+MasterRenderer* MasterRenderer::Create(uint api, iGameWindow* pGameWindow)
 {
 	MasterRenderer* mr = new MasterRenderer();
-	mr->Initilize(api, window);
+	mr->Initilize(api, pGameWindow);
 	return mr;
 }

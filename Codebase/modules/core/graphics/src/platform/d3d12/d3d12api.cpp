@@ -1,13 +1,12 @@
 #include "d3d12api.h"
-#include "interfaces/isurface.h"
 #include "d3dx12.h"
 #include "Util/Util.h"
 
 namespace Graphics
 {
-	DirectX12API::DirectX12API(iSurface* rasterSurface)
+	DirectX12API::DirectX12API(iGameWindow* window)
 	{
-		this->surface = rasterSurface;
+		this->window = window;
 		
 		if (FAILED(InitilizeD3D12()))
 		{
@@ -105,7 +104,7 @@ namespace Graphics
 		}
 
 		// Initilization Complete
-		surface->SetWindowTitle(surface->GetWindowTitle()+ L" | " + GetAdapter().desc.Description + L"(D3D12)");
+		//window->SetTitle(window->GetTitle() + " | " + GetAdapter().desc.Description + L"(D3D12)");
 
 		return hr;
 	}
@@ -235,7 +234,6 @@ namespace Graphics
 
 			device->CreateRenderTargetView(buffer.Get(), &rtv_desc, buffer_ptr);
 
-
 			buffer_ptr.Offset(increment_size);
 		}
 
@@ -248,8 +246,8 @@ namespace Graphics
 
 		DXGI_SWAP_CHAIN_DESC desc{};
 		desc.BufferCount = NUM_FRAMES;
-		desc.BufferDesc.Width = surface->GetWidth();
-		desc.BufferDesc.Height = surface->GetHeight();
+		desc.BufferDesc.Width = window->GetWidth();
+		desc.BufferDesc.Height = window->GetHeight();
 		desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		desc.BufferDesc.RefreshRate.Numerator = 1u;
 		desc.BufferDesc.RefreshRate.Denominator = 60u;
@@ -259,11 +257,11 @@ namespace Graphics
 		desc.SampleDesc.Quality = 0;
 		desc.BufferUsage = DXGI_USAGE_BACK_BUFFER;
 		desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING;
-		desc.OutputWindow = surface->GetSurfacePointer();
+		desc.OutputWindow = (HWND)window->GetHandle();
 		desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 		desc.Windowed = TRUE; // TODO: surface.isWindowedMode?
 		
-		CHECK(factory->CreateSwapChain(drawQueue.Get(), &desc, &swapchain));// COMEBAKC TO ME
+		CHECK(factory->CreateSwapChain(drawQueue.Get(), &desc, &swapchain)); // COMEBACK TO ME
 
 		return swapchain.As(ppSwapchain);
 	}
@@ -633,18 +631,17 @@ namespace Graphics
 		allocator->Reset();
 		cmd->Reset(allocator.Get(), nullptr);
 
-		vp_default.Width = surface->GetWidth();
-		vp_default.Height = surface->GetHeight();
+		vp_default.Width = window->GetWidth();
+		vp_default.Height = window->GetHeight();
 		vp_default.MinDepth = 0;
 		vp_default.MaxDepth = 1;
 		vp_default.TopLeftX = 0;
 		vp_default.TopLeftY = 0;
 
-
 		scissor_default.left = 0;
 		scissor_default.top = 0;
-		scissor_default.right = surface->GetWidth();
-		scissor_default.bottom = surface->GetHeight();
+		scissor_default.right = window->GetWidth();
+		scissor_default.bottom = window->GetHeight();
 
 		cmd->RSSetViewports(1, &vp_default);
 		cmd->RSSetScissorRects(1, &scissor_default);

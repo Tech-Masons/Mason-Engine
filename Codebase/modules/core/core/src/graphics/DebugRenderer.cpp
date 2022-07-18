@@ -1,13 +1,12 @@
 #include "DebugRenderer.h"
-#include "interfaces/iSurface.h"
 #include "Commands.h"
 #include "io/File.h"
 
 using namespace Graphics;
 
-void DebugRenderer::OnInitilize(Graphics::iSurface* pSurface)
+void DebugRenderer::OnInitilize(iGameWindow* pGameWindow)
 {
-	this->surface = pSurface;
+	this->pGameWindow = pGameWindow;
 	this->line_buffer = RenderCommands::CreateVertexBuffer(sizeof(DLine_Vertex));
 
 	uint cbuffers[1] = {
@@ -94,7 +93,7 @@ void DebugRenderer::OnUpdate(double deltaTime)
 
 	SceneData scene_data{};
 
-	float aspect = (float)surface->GetWidth() / (float)surface->GetHeight();
+	float aspect = (float)pGameWindow->GetWidth() / (float)pGameWindow->GetHeight();
 
 	matrix4f projection = Matrix::ProjectionLH(TO_RADIAN(65.0f), aspect, 0.1f, 100.0f);
 

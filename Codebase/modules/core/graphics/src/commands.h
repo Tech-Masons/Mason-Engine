@@ -2,7 +2,6 @@
 
 #include "GfxPrecompiled.h"
 #include "GfxDefines.h"
-
 #include "platform/d3d12/d3d12api.h"
 
 class IWindow;
@@ -22,7 +21,7 @@ namespace Graphics
 	class RenderCommands
 	{
 	public:
-		inline static void SelectAPI(API selected, iSurface* pWindow)
+		inline static void SelectAPI(API selected, iGameWindow* pWindow)
 		{
 			switch (selected)
 			{

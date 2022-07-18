@@ -1,10 +1,7 @@
 #pragma once
-
 #include "cpch.h"
 #include "cdefs.h"
-
 #include "structures/Vertices.h"
-
 #include "interfaces/iRenderer.h"
 
 namespace Graphics
@@ -24,7 +21,7 @@ public:
 	MasterRenderer();
 	~MasterRenderer();
 
-	void Initilize(uint api, Graphics::iSurface* window);
+	void Initilize(uint api, iGameWindow* pGameWindow);
 
 	void Shutdown();
 
@@ -36,9 +33,9 @@ public:
 
 	iRenderer* GetRenderer(RenderType type);
 
-	static MasterRenderer* Create(uint api, Graphics::iSurface* window);
+	static MasterRenderer* Create(uint api, iGameWindow* pGameWindow);
 private:
 	std::map<RenderType, iRenderer*> renderers;
-	Graphics::iSurface* surface;
+	iGameWindow* pGameWindow;
 	matrix4f viewMatrix;
 };

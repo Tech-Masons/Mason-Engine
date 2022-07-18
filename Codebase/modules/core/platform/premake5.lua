@@ -1,4 +1,4 @@
-project "core"
+project "platform"
     kind "staticLib"
     language "c++"
     cppdialect "c++latest"
@@ -23,21 +23,14 @@ project "core"
     includedirs {
         "src/", 
         "../../../packages/",
-        "../graphics/src",
-	   "../platform/src",
-        "../../mathematics/src",
     }
     libdirs{
         "../../../bin/lib/%{cfg.buildcfg}/"
     }
     links {
-        "graphics",
-        "mathematics",
-	   "platform"
     }
 
     filter "system:windows"
-        
         staticruntime "off"
         systemversion "latest"
 

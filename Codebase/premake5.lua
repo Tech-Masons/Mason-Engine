@@ -14,6 +14,7 @@ workspace "Mason Engine"
     -- core modules
     include "modules/core/graphics"
     include "modules/core/core"
+    include "modules/core/platform"
     -- include "modules/core/audio"
     -- include "modules/core/input"
     

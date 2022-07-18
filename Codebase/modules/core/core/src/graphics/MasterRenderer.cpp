@@ -51,9 +51,8 @@ void MasterRenderer::Update(double deltaTime)
 		if (entry.first != RenderType::GUI)
 			r->OnUpdate(deltaTime);
 	}
-
-
 }
+
 void MasterRenderer::Render()
 {
 	RenderCommands::BeginFrame();
@@ -64,17 +63,16 @@ void MasterRenderer::Render()
 		// Clear The Current Frame
 		RenderCommands::Clear(COLOR_BUFFER | DEPTH_BUFFER);
 
-
 		// for each of the renderers: r
 		// for each of r->pipelines
 		// bind their pipeline
 		// set their respective settings. 
 		// 
-		for (const auto& entry : renderers){
+		for (const auto& entry : renderers)
+		{
 			auto r = entry.second;
 			if(entry.first != RenderType::GUI)
 				r->OnRender();
-
 		}
 		
 		renderers[RenderType::GUI]->OnRender();

@@ -14,6 +14,7 @@ namespace Graphics
 		None				= 0,
 		DirectX11			= None + 1,
 		DirectX12			= DirectX11 + 1,
+		Vulkan				= DirectX11 + 2,
 		
 		API_COUNT			= DirectX12 + 1
 	};

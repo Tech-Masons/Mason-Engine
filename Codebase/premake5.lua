@@ -26,5 +26,3 @@ workspace "Mason Engine"
     
     -- test module
     include "tests"
-
-   

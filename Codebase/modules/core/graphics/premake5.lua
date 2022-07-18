@@ -65,4 +65,3 @@ project "graphics"
         buildoptions "/MD"
 
         defines { "NDEBUG" }
-    

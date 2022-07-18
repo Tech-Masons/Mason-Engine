@@ -3,7 +3,7 @@
 
 using namespace Graphics;
 
-void GUIRenderer::OnInitilize(Graphics::iSurface*)
+void GUIRenderer::OnInitilize(Graphics::iSurface* pSurface)
 {
 	//RenderCommands::CreateVertexBuffer(vb);
 	//RenderCommands::CreateShaderPipeline();

@@ -124,7 +124,6 @@ void DebugRenderer::DrawMatrix(matrix4f matrix)
 	AddLine({ origin, origin + right }, { 1.0f, 0.0f, 0.0f, 1.0f });
 	AddLine({ origin, origin + up }, { 0.0f, 1.0f, 0.0f, 1.0f });
 	AddLine({ origin, origin + forward }, { 0.0f, 0.0f, 1.0f, 1.0f });
-
 }
 
 void DebugRenderer::DrawColliderAABB(matrix4f matrix, float3 size, Color4 color)

@@ -55,7 +55,7 @@ uint64 Editor::Tick()
 		///SUBMIT ALL RENDER COMMANDS HERE -------------------------------------------------
 
 		 //Aqure the Debug Renderer
-		auto dbg = type_cast<DebugRenderer>(masterRenderer->GetRenderer(RenderType::Debug));
+		auto dbg = TypeCast<DebugRenderer>(masterRenderer->GetRenderer(RenderType::Debug));
 
 		 //request a grid to be drawn by the debug renderer
 		dbg->DrawGridXZ(10.0f, 0.5f, { 0.0f, 1.0f, 0.0f, 1.0f });

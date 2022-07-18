@@ -43,4 +43,4 @@ typedef unsigned int uint;
 
 // downcast interface members
 template<typename T>
-static T* type_cast(void* ptr) { return reinterpret_cast<T*>(ptr); }
+static T* TypeCast(void* ptr) { return reinterpret_cast<T*>(ptr); }

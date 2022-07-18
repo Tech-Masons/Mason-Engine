@@ -39,7 +39,8 @@ namespace Graphics
 		
 		// determine how many adapters(gpus) the current machine has
 		ComPtr<IDXGIAdapter1> adapter;
-		for (UINT i = 0; factory1->EnumAdapters1(i, &adapter) != DXGI_ERROR_NOT_FOUND; i++) {
+		for (UINT i = 0; factory1->EnumAdapters1(i, &adapter) != DXGI_ERROR_NOT_FOUND; i++)
+		{
 			ComPtr<IDXGIAdapter4> adapter4;
 			hr = adapter.As(&adapter4);
 
@@ -85,7 +86,8 @@ namespace Graphics
 			
 			drawFenceEvents[i] = CreateEvent(NULL, FALSE, FALSE, NULL);
 			
-			if (drawFenceEvents[i] == NULL) {
+			if (drawFenceEvents[i] == NULL)
+			{
 				throw std::runtime_error("Could not Create Fence Events");
 			}
 
@@ -450,7 +452,6 @@ namespace Graphics
 		cmd->ClearDepthStencilView(dsv, D3D12_CLEAR_FLAG_DEPTH, 1.0, 0.0, 0, nullptr);
 
 		cmd->OMSetRenderTargets(1, &rtv, false, &dsv);
-
 	}
 
 	uint DirectX12API::CreateShaderPipeline(const std::string& vsData, const std::string& psData, std::vector<InputElement> layout, TopologyType topology, const int num_cbvs, uint* cbv_sizes)
@@ -533,7 +534,6 @@ namespace Graphics
 			pipe->constant_buffers.Add(CreateConstantBuffer(cbv_sizes[i]));
 		}
 
-
 		return pipelines.Add(pipe);
 	}
 
@@ -603,7 +603,6 @@ namespace Graphics
 			buffer_ptr.Offset(size);
 
 		}
-
 		return buffer;
 	}
 
@@ -647,7 +646,8 @@ namespace Graphics
 		cmd->RSSetScissorRects(1, &scissor_default);
 	}
 
-	void DirectX12API::SubmitDrawData() {
+	void DirectX12API::SubmitDrawData()
+	{
 
 		ComPtr<ID3D12GraphicsCommandList> cmd = drawLists[current_frame_idx];
 		
@@ -665,7 +665,8 @@ namespace Graphics
 		Flush(drawQueue, drawFences[current_frame_idx], drawFenceValues[current_frame_idx], drawFenceEvents[current_frame_idx]);
 	}
 
-	void DirectX12API::Present(bool vsync) {
+	void DirectX12API::Present(bool vsync)
+	{
 		swapchain->Present(vsync ? 1 : 0, vsync ? 0 : DXGI_PRESENT_ALLOW_TEARING);
 	}
 

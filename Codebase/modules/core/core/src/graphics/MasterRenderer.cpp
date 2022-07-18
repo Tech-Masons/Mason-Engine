@@ -28,12 +28,12 @@ void MasterRenderer::Initilize(uint api, iGameWindow* pGameWindow)
 		r->OnInitilize(pGameWindow);
 	}
 	// Setup Default Renderers 
-
 }
 
 void MasterRenderer::Shutdown()
 {
-	for (const auto& entry : renderers) {
+	for (const auto& entry : renderers)
+	{
 		auto r = entry.second;
 		r->OnShutdown();
 		delete r;
@@ -44,9 +44,9 @@ void MasterRenderer::Update(double deltaTime)
 {
 	renderers[RenderType::GUI]->OnUpdate(deltaTime);
 
-	for (const auto& entry : renderers) {
+	for (const auto& entry : renderers)
+	{
 		auto r = entry.second;
-
 		if (entry.first != RenderType::GUI)
 			r->OnUpdate(deltaTime);
 	}

@@ -20,10 +20,10 @@ namespace Graphics
 	};
 
 	template<typename T>
-	struct Heap {
+	struct Heap
+	{
 		std::vector<T*> memory;
 		uint count = 0;
-
 	public:
 		Heap(size_t space = 50)
 		{
@@ -45,7 +45,8 @@ namespace Graphics
 
 			for (uint i = 0; i < memory.size(); i++)
 			{
-				if (memory[i] == nullptr) {
+				if (memory[i] == nullptr)
+				{
 					memory[i] = element;
 					position = i;
 					count++;
@@ -101,7 +102,6 @@ namespace Graphics
 		ComPtr<ID3D12PipelineState> pipeline;
 
 		Heap<ConstantBuffer> constant_buffers;
-
 	public:
 		void Clean()
 		{
@@ -212,7 +212,7 @@ namespace Graphics
 		Heap<VertexBuffer> vertex_buffers;
 
 		// State
-		float clear_color[4]{0.0f, 0.0f, 0.0f, 0.0f};
+		float clear_color[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 		float depth = 0;
 
 		UINT current_frame_idx = 0;

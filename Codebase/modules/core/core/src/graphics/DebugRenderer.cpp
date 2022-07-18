@@ -194,14 +194,12 @@ void DebugRenderer::DrawColliderOBB(matrix4f matrix, Color4 color)
 	AddLine({ blb, brb }, color);
 	AddLine({ blf, brf }, color);
 
-
 	// draw the top face
 	AddLine({ tlb, tlf }, color);
 	AddLine({ trb, trf }, color);
 
 	AddLine({ tlb, trb }, color);
 	AddLine({ tlf, trf }, color);
-
 
 	// connect left edges
 	AddLine({ blb, tlb }, color);

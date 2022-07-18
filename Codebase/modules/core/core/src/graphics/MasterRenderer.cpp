@@ -17,9 +17,8 @@ MasterRenderer::~MasterRenderer()
 
 void MasterRenderer::Initilize(uint api, Graphics::iSurface* pSurface)
 {
-	surface = pSurface;
-
-	viewMatrix = Matrix::Identity;
+	this->surface = pSurface;
+	this->viewMatrix = Matrix::Identity;
 
 	RenderCommands::SelectAPI((API)api, surface);
 

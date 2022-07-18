@@ -580,7 +580,6 @@ namespace Math {
 		look_at.row2 = { forward.x, forward.y, forward.z, 0.0f };
 		look_at.row3 = { position.x, position.y, position.z, 0.0f};
 
-
 		return look_at;
 	}
 
@@ -608,8 +607,6 @@ namespace Math {
 		float _yaw = VdotX * speed * deltaTime;
 
 		float _pitch = VdotY * speed * deltaTime;
-
-
 
 		matrix4f rot = Matrix::RotationRollPitchYaw({_yaw, _pitch, 0.0f});
 

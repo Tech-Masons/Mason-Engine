@@ -8,10 +8,11 @@ namespace Graphics
 	class iSurface
 	{
 	public:
-		iSurface(const std::wstring& _title, int _width, int _height) : className{L"Editor"} {
-			width = _width;
-			height = _height;
-			title = _title;
+		iSurface(const std::wstring& _title, int _width, int _height) : className {L"Editor"}
+		{
+			this->width = _width;
+			this->height = _height;
+			this->title = _title;
 
 			// register a class to use, tie in the message thunk to seperate
 			// the message callback
@@ -45,6 +46,7 @@ namespace Graphics
 
 			ShowWindow(hSurface, SW_NORMAL);
 		};
+
 		virtual ~iSurface() = default;
 
 		std::optional<UINT> ProcessMessages()
@@ -84,7 +86,7 @@ namespace Graphics
 
 		void SetWindowTitle(const std::wstring& _title)
 		{
-			title = _title;
+			this->title = _title;
 			SetWindowText(hSurface, title.c_str());
 		}
 

@@ -7,11 +7,10 @@ using namespace Graphics;
 
 void DebugRenderer::OnInitilize(Graphics::iSurface* pSurface)
 {
-	surface = pSurface;
+	this->surface = pSurface;
+	this->line_buffer = RenderCommands::CreateVertexBuffer(sizeof(DLine_Vertex));
 
-	line_buffer = RenderCommands::CreateVertexBuffer(sizeof(DLine_Vertex));
-
-	uint cbuffers[1]{
+	uint cbuffers[1] = {
 		sizeof(SceneData)
 	};
 

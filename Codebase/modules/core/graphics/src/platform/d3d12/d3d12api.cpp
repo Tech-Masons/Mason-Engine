@@ -5,11 +5,12 @@
 
 namespace Graphics
 {
-	DirectX12API::DirectX12API(iSurface* raster_surface)
+	DirectX12API::DirectX12API(iSurface* rasterSurface)
 	{
-		surface = raster_surface;
+		this->surface = rasterSurface;
 		
-		if (FAILED(InitilizeD3D12())) {
+		if (FAILED(InitilizeD3D12()))
+		{
 			throw std::runtime_error("Could not initilize D3D12 Resources!!");
 		}
 	}

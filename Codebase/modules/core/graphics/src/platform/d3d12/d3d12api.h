@@ -110,9 +110,10 @@ namespace Graphics
 	};
 
 	class iSurface;
+
 	class DirectX12API : public iRenderAPI {
 	public:
-		DirectX12API(iSurface* raster_surface);
+		DirectX12API(iSurface* rasterSurface);
 		virtual ~DirectX12API();
 
 		virtual void SetColor(float r, float g, float b, float a) override;

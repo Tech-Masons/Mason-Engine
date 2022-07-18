@@ -8,6 +8,7 @@
 
 class Window;
 class MasterRenderer;
+
 class Editor : public iExecutable
 {
 public:

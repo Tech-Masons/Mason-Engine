@@ -31,7 +31,6 @@ project "graphics"
         "d3d12",
         "dxguid",
         "mathematics",
-        "DirectXTK12.lib",
 	   "platform"
     }
     defines {

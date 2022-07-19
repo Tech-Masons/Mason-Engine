@@ -7,7 +7,7 @@
 #include <graphics/DebugRenderer.h>
 
 ECS_Test::ECS_Test(Win32Window* pWindow, MasterRenderer* pRenderer, std::map<InputType, iInputSystem*> inputSystems)
-: iTest(L"ECS_Test", pWindow, pRenderer, inputSystems)
+	: iTest(L"ECS_Test", pWindow, pRenderer, inputSystems)
 {
 
 }
@@ -38,9 +38,7 @@ void ECS_Test::Init()
 		EntityID test_entity = scene->CreateEntity();
 		Transform* test_entity_trans = scene->AddComponent<Transform>(test_entity);
 		test_entity_trans->SetPosition({ prng(prng_engine),prng(prng_engine), prng(prng_engine) });
-
 	}
-
 }
 
 void ECS_Test::Input()
@@ -60,12 +58,12 @@ void ECS_Test::Update(float deltaTime)
 
 	for (EntityID entity : ComponentView<Transform>(scene))
 	{
-		if (!scene->GetComponent<PerspectiveCamera>(entity)) {
+		if (!scene->GetComponent<PerspectiveCamera>(entity))
+		{
 			Transform* t = scene->GetComponent<Transform>(entity);
 			dbg->DrawMatrix(t->GetMatrix());
 		}
 	}
-
 }
 
 void ECS_Test::LateUpdate(float fixedDeltaTime)
@@ -80,10 +78,10 @@ void ECS_Test::HandleEditorCameraControl(double deltaTime)
 {
 	Transform* cam_trans = nullptr;
 
-	for (EntityID entity : ComponentView<PerspectiveCamera>(scene)) {
-
-		if (scene->GetComponent<Tag>(entity)->value == TEST_SUITE_CAMERA_NAME) {
-
+	for (EntityID entity : ComponentView<PerspectiveCamera>(scene))
+	{
+		if (scene->GetComponent<Tag>(entity)->value == TEST_SUITE_CAMERA_NAME)
+		{
 			cam_trans = scene->GetComponent<Transform>(entity);
 
 			float3 pos = cam_trans->GetPosition();
@@ -99,33 +97,33 @@ void ECS_Test::HandleEditorCameraControl(double deltaTime)
 			float3 up = cam_trans->GetMatrix().row1.xyz();
 			float3 forward = cam_trans->GetMatrix().row2.xyz();
 
-			if (kbd->IsKeyPressed(KeyCode::W)) {
+			if (kbd->IsKeyPressed(KeyCode::W))
+			{
 				pos += forward * camera.MoveSpeed * deltaTime;
 				pos.y = last_y;
 			}
-			if (kbd->IsKeyPressed(KeyCode::S)) {
+			if (kbd->IsKeyPressed(KeyCode::S)) 
+			{
 				pos -= forward * camera.MoveSpeed * deltaTime;
 				pos.y = last_y;
 			}
-			if (kbd->IsKeyPressed(KeyCode::A)) {
+			if (kbd->IsKeyPressed(KeyCode::A))
+			{
 				pos -= right * camera.MoveSpeed * deltaTime;
 			}
-			if (kbd->IsKeyPressed(KeyCode::D)) {
+			if (kbd->IsKeyPressed(KeyCode::D))
+			{
 				pos += right * camera.MoveSpeed * deltaTime;
 			}
 
 			cam_trans->SetPosition(pos);
-
 		}
-
 	}
 
 	renderer->UpdateViewMatrix(Matrix::Inverse(cam_trans->GetMatrix()));
-
 }
 
 Scene* ECS_Test::LoadScene()
 {
 	return new Scene();
 }
-

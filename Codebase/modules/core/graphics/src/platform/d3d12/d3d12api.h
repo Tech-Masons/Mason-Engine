@@ -81,7 +81,6 @@ namespace Graphics
 				//count--;
 			}
 		}
-
 	};
 	
 	struct VertexBuffer

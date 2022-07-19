@@ -1,5 +1,6 @@
 #include "Editor.h"
 #include "graphics/MasterRenderer.h"
+#include "graphics/DebugRenderer.h"
 
 Editor::Editor()
 {
@@ -24,6 +25,12 @@ uint64 Editor::Initilize()
 
 uint64 Editor::Tick()
 {
+	matrix4f camera = Matrix::Identity;
+	matrix4f rotation = Matrix::RotationRollPitchYaw({ TO_RADIAN(30.0f), 0.0f, 0.0f });
+	camera = Matrix::RotateGlobal(camera, rotation);
+	camera.row3 = { 0, 5, -10, 1.0 };
+	camera = Matrix::Inverse(camera);
+
 	// start the editor clock
 	clock.Start();
 	uint64_t eCode = 0;
@@ -40,9 +47,13 @@ uint64 Editor::Tick()
 		// aquire deltaTime, elapsed time between Ticks
 		auto deltaTime = clock.Signal();
 
+		auto dbg = TypeCast<DebugRenderer>(masterRenderer->GetRenderer(RenderType::Debug));
+		dbg->DrawGridXZ(25, 1, { 1.0f, 0.0f, 0.0f, 1.0f });
+
 		///-------------------------------------------------
 
 		masterRenderer->Update(deltaTime);
+		masterRenderer->UpdateViewMatrix(camera);
 		masterRenderer->Render();
 	}
 	return 0;

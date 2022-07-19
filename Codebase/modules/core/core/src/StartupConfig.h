@@ -1,8 +1,8 @@
 #pragma once
 
 // EXE CONFIGURATION
-#define EXE_Editor 0
-#define EXE_TestSuite 1
+#define EXE_Editor 1
+#define EXE_TestSuite 0
 
 // TEST CONFIGURATION 
 #define TEST_0 1

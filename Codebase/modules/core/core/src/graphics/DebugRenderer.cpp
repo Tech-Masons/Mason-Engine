@@ -101,7 +101,7 @@ void DebugRenderer::OnUpdate(double deltaTime)
 {
 	RenderCommands::UpdateVertexBuffer(line_buffer, lines.data.data(), sizeof(DLine_Vertex) * lines.data.size());
 
-	SceneData scene_data{};
+	SceneData scene_data = { };
 
 	float aspect = (float)pGameWindow->GetWidth() / (float)pGameWindow->GetHeight();
 

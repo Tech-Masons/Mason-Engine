@@ -17,8 +17,6 @@ iExecutable* CreateExecutable()
 
 }
 
-extern iTest* CreateTest(Win32Window* pWindow, MasterRenderer* renderer, std::map<InputType, iInputSystem*> inputSystems);
-
 Editor::Editor()
 {
 	window = new Win32Window("Mason Engine", 1280, 720);
@@ -28,9 +26,6 @@ Editor::Editor()
 
 	InputSystems = DEFAULT_INPUT_SYSTEMS;
 	window->AttachInputSystems(InputSystems);
-
-	
-	test = CreateTest(window, masterRenderer, InputSystems);
 
 }
 
@@ -43,20 +38,15 @@ uint64 Editor::Initilize()
 {
 	// editor camera entity
 
-	test->OnInitillize();
 
 	return 0;
 }
 
 uint64 Editor::Tick()
 {
-
-
 	// start the editor clock
 	clock.Start();
 	uint64_t eCode = 0;
-
-
 
 	while (window->IsRunning())
 	{
@@ -70,9 +60,6 @@ uint64 Editor::Tick()
 		// aquire deltaTime, elapsed time between Ticks
 		auto deltaTime = clock.Signal();
 
-		test->OnInput();
-		test->OnUpdate(deltaTime);
-		
 
 		///-------------------------------------------------
 
@@ -84,7 +71,6 @@ uint64 Editor::Tick()
 
 uint64 Editor::Shutdown()
 {
-	test->OnCleanup();
 
 	delete masterRenderer;
 	delete window;

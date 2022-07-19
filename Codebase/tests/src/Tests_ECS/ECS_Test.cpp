@@ -16,8 +16,7 @@ void ECS_Test::Init()
 {
 	scene = LoadScene();
 
-
-	EntityID editor_camera = scene->CreateEntity("CAM_Editor");
+	EntityID editor_camera = scene->CreateEntity(TEST_SUITE_CAMERA_NAME);
 	Transform* cam_trans = scene->GetComponent<Transform>(editor_camera);
 
 	PerspectiveCamera* cam = scene->AddComponent<PerspectiveCamera>(editor_camera);
@@ -32,7 +31,9 @@ void ECS_Test::Init()
 	std::default_random_engine prng_engine(seed);
 	std::uniform_real_distribution<float> prng(-10, 10);
 
-	for (int i = 0; i < (ECS_LIMITS_MAX_CONCURRET_ENTITIES / 50) - 1; i++)
+	int entity_test_draw_count = 8196;
+
+	for (int i = 0; i < entity_test_draw_count; i++)
 	{
 		EntityID test_entity = scene->CreateEntity();
 		Transform* test_entity_trans = scene->AddComponent<Transform>(test_entity);
@@ -52,7 +53,7 @@ void ECS_Test::Update(float deltaTime)
 
 	///SUBMIT ALL RENDER COMMANDS HERE -------------------------------------------------
 
-		 //Aqure the Debug Renderer
+	//Aqure the Debug Renderer
 	auto dbg = TypeCast<DebugRenderer>(renderer->GetRenderer(RenderType::Debug));
 
 	dbg->DrawGridXZ(8, 1.0f, { 1.0, 1.0, 1.0, 1.0 });
@@ -81,11 +82,12 @@ void ECS_Test::HandleEditorCameraControl(double deltaTime)
 
 	for (EntityID entity : ComponentView<PerspectiveCamera>(scene)) {
 
-		if (scene->GetComponent<Tag>(entity)->value == "CAM_Editor") {
+		if (scene->GetComponent<Tag>(entity)->value == TEST_SUITE_CAMERA_NAME) {
 
 			cam_trans = scene->GetComponent<Transform>(entity);
 
 			float3 pos = cam_trans->GetPosition();
+			float last_y = pos.y;
 
 			Keyboard* kbd = TypeCast<Keyboard>(input[InputType::Keyboard]);
 
@@ -100,9 +102,11 @@ void ECS_Test::HandleEditorCameraControl(double deltaTime)
 
 			if (kbd->IsKeyPressed(KeyCode::W)) {
 				pos += forward * camera.MoveSpeed * deltaTime;
+				pos.y = last_y;
 			}
 			if (kbd->IsKeyPressed(KeyCode::S)) {
 				pos -= forward * camera.MoveSpeed * deltaTime;
+				pos.y = last_y;
 			}
 			if (kbd->IsKeyPressed(KeyCode::A)) {
 				pos -= right * camera.MoveSpeed * deltaTime;

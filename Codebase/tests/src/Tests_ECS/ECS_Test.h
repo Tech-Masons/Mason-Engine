@@ -20,9 +20,12 @@ public:
 	void HandleEditorCameraControl(double deltaTime);
 
 private:
+
+	
 	Scene* LoadScene();
 
-
+	const std::string TEST_SUITE_CAMERA_NAME = "CAM_TestSuite";
+	
 	// Test Scene Functionality 
 	Scene* scene;
 

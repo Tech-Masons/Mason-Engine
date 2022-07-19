@@ -25,12 +25,10 @@ public:
 private:
 	MasterRenderer* masterRenderer;
 
-	//std::map<RenderType, iRenderer*> Renderers;
 	std::map<InputType, iInputSystem*> InputSystems;
 private:
 	Win32Window* window;
 	Clock clock;
-	iTest* test;
 
 };
 

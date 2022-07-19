@@ -56,6 +56,9 @@ uint64 TestSuite::Tick()
 		// aquire deltaTime, elapsed time between Ticks
 		auto deltaTime = clock.Signal();
 
+		std::string title = window->GetTitle();
+		window->SetTitle("FPS: " + std::to_string((1000 / deltaTime) / 1000.0f));
+		
 		test->OnInput();
 		test->OnUpdate(deltaTime);
 

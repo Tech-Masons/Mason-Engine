@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include "interfaces/IExecutable.h"
 #include "interfaces/IRenderer.h"
@@ -12,11 +11,11 @@ class MasterRenderer;
 class Scene;
 class iTest;
 
-class Editor : public iExecutable
+class TestSuite : public iExecutable
 {
 public:
-	Editor();
-	~Editor();
+	TestSuite();
+	~TestSuite();
 
 	virtual uint64 Initilize() override;
 	virtual uint64 Tick() override;
@@ -31,6 +30,5 @@ private:
 	Win32Window* window;
 	Clock clock;
 	iTest* test;
-
 };
 

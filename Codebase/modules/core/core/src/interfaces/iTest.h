@@ -5,12 +5,14 @@
 #include "iRenderer.h"
 #include "iInputSystem.h"
 
-class Window;
+
+class Win32Window;
+class MasterRenderer;
 
 class iTest
 {
 public:
-	iTest(const std::wstring& test_name);
+	iTest(const std::wstring& test_name, Win32Window* pWindow, MasterRenderer* pRenderer, std::map<InputType, iInputSystem*> inputSystems);
 	virtual ~iTest() {};
 	
 	void OnInitillize();
@@ -26,8 +28,7 @@ protected:
 	virtual void LateUpdate(float fixedDeltaTime)=0;
 	virtual void Destroy() = 0;
 
-	std::map<RenderType, iRenderer*> Renderers;
-	std::map<InputType, iInputSystem*> InputSystems;
-private:
-	Window* window;
+	MasterRenderer* renderer;
+	std::map<InputType, iInputSystem*> input;
+	Win32Window* window;
 };

@@ -69,6 +69,16 @@ void DebugRenderer::ClearLines()
 	lines.ClearLines();
 }
 
+void DebugRenderer::DrawGridXZ(float size, float step, uint color)
+{
+	float r = (0xFF000000 & color) / 255.0f;
+	float g = (0x00FF0000 & color) / 255.0f;
+	float b = (0x0000FF00 & color) / 255.0f;
+	float a = (0x000000FF & color) / 255.0f;
+
+	DrawGridXZ(size, step, {r, g, b, a});
+}
+
 void DebugRenderer::DrawGridXZ(float scale, float step, float4 color)
 {
 	float minX = -scale;

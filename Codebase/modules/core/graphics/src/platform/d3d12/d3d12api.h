@@ -9,7 +9,7 @@
 namespace Graphics
 {
 	#define NUM_FRAMES 3
-	#define MAX_TRIS 10'000
+	#define MAX_TRIS 1'000'000
 	#define MAX_QUADS MAX_TRIS * 2
 	#define MAX_VERTICES MAX_QUADS * 4
 

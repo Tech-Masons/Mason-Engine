@@ -46,7 +46,6 @@ struct float3 {
 		return prod;
 	}
 
-
 	float3 operator +(float3 f3) {
 		float3 sum = { 0 };
 		sum.x = this->x + f3.x;

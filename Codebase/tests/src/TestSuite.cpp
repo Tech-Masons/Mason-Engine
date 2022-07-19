@@ -1,27 +1,13 @@
-#include "Editor.h"
+#include "TestSuite.h"
 
 #include "interfaces/iTest.h"
 #include "graphics/MasterRenderer.h"
 
-#include "TestSuite.h"
-
-#include "StartupConfig.h"
-
-iExecutable* CreateExecutable()
-{
-#if EXE_Editor
-	return new Editor();
-#elif EXE_TestSuite
-	return new TestSuite();
-#endif
-
-}
-
 extern iTest* CreateTest(Win32Window* pWindow, MasterRenderer* renderer, std::map<InputType, iInputSystem*> inputSystems);
 
-Editor::Editor()
+TestSuite::TestSuite()
 {
-	window = new Win32Window("Mason Engine", 1280, 720);
+	window = new Win32Window("Test Suite", 1280, 720);
 	window->Open();
 
 	masterRenderer = MasterRenderer::Create(RENDER_API, window);
@@ -29,30 +15,30 @@ Editor::Editor()
 	InputSystems = DEFAULT_INPUT_SYSTEMS;
 	window->AttachInputSystems(InputSystems);
 
-	
+
 	test = CreateTest(window, masterRenderer, InputSystems);
 
 }
 
 
-Editor::~Editor()
+TestSuite::~TestSuite()
 {
 }
 
-uint64 Editor::Initilize()
+uint64 TestSuite::Initilize()
 {
-	// editor camera entity
+	// TestSuite camera entity
 
 	test->OnInitillize();
 
 	return 0;
 }
 
-uint64 Editor::Tick()
+uint64 TestSuite::Tick()
 {
 
 
-	// start the editor clock
+	// start the TestSuite clock
 	clock.Start();
 	uint64_t eCode = 0;
 
@@ -72,7 +58,7 @@ uint64 Editor::Tick()
 
 		test->OnInput();
 		test->OnUpdate(deltaTime);
-		
+
 
 		///-------------------------------------------------
 
@@ -82,7 +68,7 @@ uint64 Editor::Tick()
 	return 0;
 }
 
-uint64 Editor::Shutdown()
+uint64 TestSuite::Shutdown()
 {
 	test->OnCleanup();
 

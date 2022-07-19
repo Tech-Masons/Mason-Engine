@@ -20,6 +20,7 @@ public:
 	void AddLine(Line line, Color4 color);
 	void AddLine(Line line, Color4 colorA, Color4 colorB);
 
+	void DrawGridXZ(float size, float step, uint color);
 	void DrawGridXZ(float size, float step, float4 color);
 	void DrawMatrix(matrix4f matrix);
 

@@ -1,16 +1,18 @@
 #pragma once
 
-#include "interfaces/iTest.h"
 
-#define TEST_0 0
-#define TEST_1 1
-#define TEST_2 0
+#include "StartupConfig.h"
 
-iTest* CreateTest()
+#include "Tests_ECS/ECS_Test.h"
+
+
+iTest* CreateTest(Win32Window* pWindow, MasterRenderer* pRenderer, std::map<InputType, iInputSystem*> inputSystems)
 {
 #if TEST_0
+	return new ECS_Test(pWindow, pRenderer, inputSystems);
 #elif TEST_1
 #elif TEST_2
-#endif
+#else
 	return nullptr;
+#endif
 }

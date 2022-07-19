@@ -1,21 +1,6 @@
 #include "Editor.h"
 
-#include "interfaces/iTest.h"
 #include "graphics/MasterRenderer.h"
-
-#include "TestSuite.h"
-
-#include "StartupConfig.h"
-
-iExecutable* CreateExecutable()
-{
-#if EXE_Editor
-	return new Editor();
-#elif EXE_TestSuite
-	return new TestSuite();
-#endif
-
-}
 
 Editor::Editor()
 {

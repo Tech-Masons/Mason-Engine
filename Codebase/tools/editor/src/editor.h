@@ -6,6 +6,7 @@
 #include "Win32Window.h"
 #include "iInputSystem.h"
 #include "time/clock.h"
+#include "StartupConfig.h"
 
 class Window;
 class MasterRenderer;
@@ -31,4 +32,13 @@ private:
 	Clock clock;
 
 };
+
+
+#if EXE_Editor
+iExecutable* CreateExecutable()
+{
+	return new Editor();
+
+}
+#endif
 

@@ -6,6 +6,8 @@
 #include "iInputSystem.h"
 #include "time/clock.h"
 
+#include "StartupConfig.h"
+
 class Window;
 class MasterRenderer;
 class Scene;
@@ -32,3 +34,10 @@ private:
 	iTest* test;
 };
 
+#if EXE_TestSuite
+iExecutable* CreateExecutable()
+{
+return new TestSuite();
+
+}
+#endif

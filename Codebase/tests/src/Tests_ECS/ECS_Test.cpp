@@ -93,8 +93,7 @@ void ECS_Test::HandleEditorCameraControl(double deltaTime)
 
 			struct {//camera
 				float MoveSpeed = 10.0f;
-			}camera;
-
+			} camera;
 
 			float3 right = cam_trans->GetMatrix().row0.xyz();
 			float3 up = cam_trans->GetMatrix().row1.xyz();

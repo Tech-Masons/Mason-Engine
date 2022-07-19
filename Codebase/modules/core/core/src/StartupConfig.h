@@ -4,7 +4,6 @@
 #define EXE_Editor 0
 #define EXE_TestSuite 1
 
-
 // TEST CONFIGURATION 
 #define TEST_0 1
 #define TEST_1 0

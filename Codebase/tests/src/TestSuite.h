@@ -5,7 +5,6 @@
 #include "Win32Window.h"
 #include "iInputSystem.h"
 #include "time/clock.h"
-
 #include "StartupConfig.h"
 
 class Window;
@@ -22,7 +21,6 @@ public:
 	virtual uint64 Initilize() override;
 	virtual uint64 Tick() override;
 	virtual uint64 Shutdown() override;
-
 private:
 	MasterRenderer* masterRenderer;
 

@@ -1,10 +1,6 @@
 #pragma once
-
-
 #include "StartupConfig.h"
-
 #include "Tests_ECS/ECS_Test.h"
-
 
 iTest* CreateTest(Win32Window* pWindow, MasterRenderer* pRenderer, std::map<InputType, iInputSystem*> inputSystems)
 {

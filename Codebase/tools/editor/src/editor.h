@@ -22,7 +22,6 @@ public:
 	virtual uint64 Initilize() override;
 	virtual uint64 Tick() override;
 	virtual uint64 Shutdown() override;
-
 private:
 	MasterRenderer* masterRenderer;
 
@@ -30,9 +29,7 @@ private:
 private:
 	Win32Window* window;
 	Clock clock;
-
 };
-
 
 #if EXE_Editor
 iExecutable* CreateExecutable()
@@ -41,4 +38,3 @@ iExecutable* CreateExecutable()
 
 }
 #endif
-

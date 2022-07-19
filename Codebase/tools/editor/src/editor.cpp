@@ -1,5 +1,4 @@
 #include "Editor.h"
-
 #include "graphics/MasterRenderer.h"
 
 Editor::Editor()
@@ -11,9 +10,7 @@ Editor::Editor()
 
 	InputSystems = DEFAULT_INPUT_SYSTEMS;
 	window->AttachInputSystems(InputSystems);
-
 }
-
 
 Editor::~Editor()
 {
@@ -22,8 +19,6 @@ Editor::~Editor()
 uint64 Editor::Initilize()
 {
 	// editor camera entity
-
-
 	return 0;
 }
 
@@ -45,7 +40,6 @@ uint64 Editor::Tick()
 		// aquire deltaTime, elapsed time between Ticks
 		auto deltaTime = clock.Signal();
 
-
 		///-------------------------------------------------
 
 		masterRenderer->Update(deltaTime);
@@ -56,10 +50,7 @@ uint64 Editor::Tick()
 
 uint64 Editor::Shutdown()
 {
-
 	delete masterRenderer;
 	delete window;
-
 	return 0;
 }
-

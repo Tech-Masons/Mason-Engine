@@ -9,37 +9,9 @@ public:
 	Scene() {}
 	~Scene() {}
 
-	EntityID CreateEntity(const std::string& name = "Entity")
-	{
-		if (!free.empty())
-		{
-			EntityIndex newIDX = free.back();
-			free.pop_back();
+	EntityID CreateEntity(const std::string& name = "Entity");
 
-			EntityID newID = Entity::CreateEntityID(newIDX, Entity::GetEntityVersion(entities[newIDX].id));
-			entities[newIDX].id = newID;
-
-			return entities[newID].id;
-		}
-
-		Entity entity = { Entity::CreateEntityID(EntityIndex(entities.size()), 0), ComponentMask() };
-		entities.push_back(entity);
-
-		Transform* cam_trans = AddComponent<Transform>(entity.id);
-		Tag* cam_tag = AddComponent<Tag>(entity.id);
-		cam_tag->value = name;
-
-		return entities.back().id;
-	}
-
-	void DestroyEntity(EntityID id)
-	{
-		EntityID newID = Entity::CreateEntityID(EntityIndex(-1), Entity::GetEntityVersion(id) + 1);
-		entities[Entity::GetEntityIndex(id)].id = newID;
-		entities[Entity::GetEntityIndex(id)].components.reset();
-
-		free.push_back(Entity::GetEntityIndex(id));
-	}
+	void DestroyEntity(EntityID id);
 
 	template<typename T>
 	T* AddComponent(EntityID id)
@@ -52,7 +24,8 @@ public:
 		int compID = Entity::GetComponentID<T>();
 
 		// the pool is not big enough. needs to be resized
-		if (pools.size() <= compID) {
+		if (pools.size() <= compID)
+		{
 			pools.resize(compID + 1, nullptr);
 		}
 

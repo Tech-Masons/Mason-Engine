@@ -21,4 +21,5 @@ using namespace Microsoft::WRL;
 #include <chrono>
 #include <map>
 #include <cstdint>
+#include <algorithm>
 #pragma endregion
